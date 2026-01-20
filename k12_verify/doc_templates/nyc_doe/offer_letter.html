@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @font-face {
+            font-family: 'Janelotus';
+            src: url('../font/SVN-Janelotus.otf') format('opentype');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Georgia, serif;
+            font-size: 15px;
+            line-height: 1.4;
+            color: #000;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+
+        .letter-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #003399 0%, #0044aa 100%);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .district-info {
+            flex: 1;
+        }
+
+        .district-name {
+            font-size: 15pt;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .district-address {
+            font-size: 9pt;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .logo-placeholder {
+            width: 65px;
+            height: 65px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 7pt;
+            color: #003399;
+            text-align: center;
+        }
+
+        .letter-body {
+            padding: 20px 30px;
+        }
+
+        .ref-number {
+            font-size: 9pt;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .date-line {
+            text-align: right;
+            margin-bottom: 15px;
+            font-size: 10pt;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 14pt;
+            font-weight: bold;
+            color: #003399;
+            margin: 20px 0;
+            text-decoration: underline;
+        }
+
+        .greeting {
+            margin-bottom: 12px;
+        }
+
+        .body-para {
+            text-align: justify;
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
+
+        .offer-box {
+            border: 2px solid #003399;
+            margin: 15px 0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .offer-box h3 {
+            background: #FF6600;
+            color: white;
+            padding: 8px 15px;
+            font-size: 10pt;
+            margin: 0;
+        }
+
+        .offer-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .offer-table td {
+            padding: 6px 12px;
+            border-bottom: 1px dotted #ccc;
+            font-size: 15px;
+        }
+
+        .offer-table td:first-child {
+            font-weight: bold;
+            width: 150px;
+            color: #003399;
+        }
+
+        .terms-section {
+            margin: 15px 0;
+            font-size: 15px;
+        }
+
+        .terms-section h4 {
+            color: #003399;
+            margin-bottom: 8px;
+            font-size: 11pt;
+        }
+
+        .terms-list {
+            margin-left: 18px;
+        }
+
+        .terms-list li {
+            margin-bottom: 4px;
+        }
+
+        .acceptance-section {
+            margin-top: 20px;
+            padding: 18px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .acceptance-section h4 {
+            margin-bottom: 12px;
+            color: #003399;
+            font-size: 11pt;
+        }
+
+        .signature-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .signature-block {
+            width: 45%;
+        }
+
+        .signature-name {
+            font-family: 'Janelotus', cursive;
+            font-size: 22pt;
+            color: #000000;
+            height: 30px;
+            border-bottom: 1px solid #000;
+            margin-bottom: 4px;
+        }
+
+        .signature-label {
+            font-size: 9pt;
+            color: #666;
+        }
+
+        .signature-title {
+            font-size: 8pt;
+            color: #333;
+            font-style: italic;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            text-align: center;
+            font-size: 8pt;
+            color: #666;
+            padding: 12px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="letter-container">
+        <div class="header">
+            <div class="district-info">
+                <div class="district-name">NEW YORK CITY DEPARTMENT OF EDUCATION</div>
+                <div class="district-address">
+                    52 Chambers Street, New York, NY 10007<br>
+                    Tel: (212) 374-0200 | www.schools.nyc.gov
+                </div>
+            </div>
+            <div class="logo-placeholder">CITY OF<br>NYC</div>
+        </div>
+
+        <div class="letter-body">
+            <div class="ref-number">Ref: HR/OFFER/2024/1234567</div>
+            <div class="date-line">Date: December 27, 2024</div>
+
+            <div class="greeting"><strong>Dear Sarah J. Connor,</strong></div>
+
+            <div class="title">OFFER OF EMPLOYMENT</div>
+
+            <div class="body-para">
+                We are pleased to offer you the position of <strong>Faculty - Science Department</strong>
+                with the New York City Department of Education, subject to the terms and conditions outlined below.
+                This offer is contingent upon satisfactory completion of all pre-employment requirements.
+            </div>
+
+            <div class="offer-box">
+                <h3>POSITION DETAILS</h3>
+                <table class="offer-table">
+                    <tr>
+                        <td>Position Title:</td>
+                        <td>Faculty - Science Department (FTE 1.0)</td>
+                    </tr>
+                    <tr>
+                        <td>Employee ID:</td>
+                        <td>E-1234567</td>
+                    </tr>
+                    <tr>
+                        <td>Payroll #:</td>
+                        <td>040</td>
+                    </tr>
+                    <tr>
+                        <td>Work Location:</td>
+                        <td>Springfield North High School</td>
+                    </tr>
+                    <tr>
+                        <td>Work Unit:</td>
+                        <td>M015</td>
+                    </tr>
+                    <tr>
+                        <td>Employment Type:</td>
+                        <td>Full-Time, 10-Month Contract</td>
+                    </tr>
+                    <tr>
+                        <td>Start Date:</td>
+                        <td>August 15, 2024</td>
+                    </tr>
+                    <tr>
+                        <td>Contract Period:</td>
+                        <td>2024-2025 Academic Year</td>
+                    </tr>
+                    <tr>
+                        <td>Annual Salary:</td>
+                        <td>$58,500.00 (Step 5, BA+30)</td>
+                    </tr>
+                    <tr>
+                        <td>Pay Schedule:</td>
+                        <td>Bi-weekly (26 pay periods)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="terms-section">
+                <h4>Terms and Conditions:</h4>
+                <ul class="terms-list">
+                    <li>Valid New York State teaching certification must be maintained</li>
+                    <li>Satisfactory completion of background check and fingerprinting</li>
+                    <li>Proof of eligibility to work in the United States</li>
+                    <li>Subject to NY State Education Law and NYC DOE policies</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h4>Benefits Include:</h4>
+                <ul class="terms-list">
+                    <li>Teachers' Retirement System (TRS) enrollment</li>
+                    <li>Health, dental, and vision insurance through NYC Employee Benefits</li>
+                    <li>Paid sick leave and personal days per UFT contract</li>
+                </ul>
+            </div>
+
+            <div class="acceptance-section">
+                <h4>ACCEPTANCE OF OFFER</h4>
+                <div class="body-para">
+                    Please sign below to indicate your acceptance of this offer. Return signed copy to
+                    Human Resources within 10 business days.
+                </div>
+                <div class="signature-row">
+                    <div class="signature-block">
+                        <div class="signature-name">Sarah J. Connor</div>
+                        <div class="signature-label">Employee Signature</div>
+                        <div class="signature-title">Date: December 27, 2024</div>
+                    </div>
+                    <div class="signature-block">
+                        <div class="signature-name">Dr. Patrick Fagan</div>
+                        <div class="signature-label">HR Director Signature</div>
+                        <div class="signature-title">Chief Human Resources Officer, NYC DOE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            NYC Department of Education | Human Resources Division | Document ID: OFR-2024-1234567
+        </div>
+    </div>
+</body>
+
+</html>

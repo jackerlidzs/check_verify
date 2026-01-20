@@ -1,0 +1,71 @@
+[
+  {
+    "district": "nyc_doe",
+    "teacher": {
+      "first_name": "Leslie",
+      "last_name": "Berger",
+      "full_name": "Leslie Berger",
+      "email": "leslie.berger@schools.nyc.gov",
+      "birth_date": "1979-11-07",
+      "school_id": "X445",
+      "school_name": "Bronx High School of Science",
+      "position": "English Teacher",
+      "school_city": "Bronx",
+      "school_state": "NY",
+      "hire_date": "2008-08-18"
+    },
+    "document_info": {
+      "employee_id": "E-7114305",
+      "school_name": "Bronx High School of Science",
+      "district_name": "New York City Department of Education",
+      "position": "English Teacher",
+      "full_name": "Leslie Berger"
+    }
+  },
+  {
+    "district": "miami_dade",
+    "teacher": {
+      "first_name": "Maria",
+      "last_name": "Breen",
+      "full_name": "Maria Breen",
+      "email": "mbreen@dadeschools.net",
+      "birth_date": "1982-01-17",
+      "school_id": "6661",
+      "school_name": "Coral Gables Senior High",
+      "position": "Spanish Teacher",
+      "school_city": "Coral Gables",
+      "school_state": "FL",
+      "hire_date": "2011-08-22"
+    },
+    "document_info": {
+      "employee_id": "E-634107",
+      "school_name": "Coral Gables Senior High",
+      "district_name": "Miami-Dade County Public Schools",
+      "position": "Spanish Teacher",
+      "full_name": "Maria Breen"
+    }
+  },
+  {
+    "district": "springfield_high",
+    "teacher": {
+      "first_name": "Jessica",
+      "last_name": "Robinson",
+      "full_name": "Jessica Robinson",
+      "email": "jrobinson@springfield.k12.il.us",
+      "birth_date": "1983-03-11",
+      "school_id": "SH001",
+      "school_name": "Springfield High School",
+      "position": "Health Education Teacher",
+      "school_city": "Springfield",
+      "school_state": "IL",
+      "hire_date": "2012-08-20"
+    },
+    "document_info": {
+      "employee_id": "E-6611526",
+      "school_name": "Springfield High School",
+      "district_name": "Springfield High School",
+      "position": "Health Education Teacher",
+      "full_name": "Jessica Robinson"
+    }
+  }
+]

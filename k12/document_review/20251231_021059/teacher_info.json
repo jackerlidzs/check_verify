@@ -1,0 +1,28 @@
+{
+  "full_name": "Endre Borsos",
+  "employee_id": "E-6491788",
+  "school_name": "Miami Beach Senior High",
+  "district": "Miami-Dade County Public Schools",
+  "salary": "$69,000.00 (Step 4, BA+30)",
+  "position": "Teacher",
+  "hire_date": "2008-08-18",
+  "school_template": "miami_dade",
+  "district_template": "miami_dade",
+  "submitted_data": {
+    "first_name": "Endre",
+    "last_name": "Borsos",
+    "email": "eborsos@dadeschools.net",
+    "birth_date": "1979-05-16",
+    "school_name": "Miami Beach Senior High",
+    "school_id": "7141",
+    "district_template": "miami_dade",
+    "position": "Teacher",
+    "hire_date": "2008-08-18",
+    "department": "General Education",
+    "employee_id": "6491788",
+    "employee_id_formatted": "E-6491788",
+    "annual_salary": 69000,
+    "salary_step": "Step 4, BA+30",
+    "pension_number": "TRS-6491788"
+  }
+}

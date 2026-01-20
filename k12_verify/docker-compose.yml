@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  k12-verify:
+    build: .
+    container_name: k12-verify
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - DATABASE_URL=sqlite:///./data/k12_verify.db
+      - PLAYWRIGHT_HEADLESS=true
+    restart: unless-stopped

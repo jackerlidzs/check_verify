@@ -1,0 +1,58 @@
+{
+    "_comment": "Proxy Configuration - Supports multiple providers",
+    "active_provider": "dataimpulse",
+    "providers": {
+        "brightdata_dc": {
+            "name": "Bright Data Datacenter",
+            "type": "datacenter",
+            "protocol": "http",
+            "host": "brd.superproxy.io",
+            "port": 33335,
+            "username": "brd-customer-hl_83bd6192-zone-datacenter_proxy2-country-us",
+            "password": "a30v5cb40qwj",
+            "country": "us"
+        },
+        "brightdata": {
+            "name": "Bright Data Residential",
+            "type": "residential",
+            "protocol": "http",
+            "host": "brd.superproxy.io",
+            "port": 33335,
+            "username": "brd-customer-hl_83bd6192-zone-residential_proxy2-country-us",
+            "password": "4c1v01c4ubzm",
+            "country": "us"
+        },
+        "dataimpulse": {
+            "name": "DataImpulse Residential",
+            "type": "residential",
+            "protocol": "http",
+            "host": "gw.dataimpulse.com",
+            "sticky_port": 10000,
+            "rotating_port": 823,
+            "username": "bc62638d394b903e219e",
+            "password": "db385400a5a64b74",
+            "country": "us",
+            "state": "california,florida,newyork,texas"
+        },
+        "qv2ray": {
+            "name": "Qv2ray SOCKS5 (Local)",
+            "type": "socks5",
+            "protocol": "socks5",
+            "host": "host.docker.internal",
+            "port": 10808,
+            "username": null,
+            "password": null,
+            "country": null
+        },
+        "none": {
+            "name": "No Proxy (Direct)",
+            "type": "direct",
+            "enabled": false
+        }
+    },
+    "test_urls": {
+        "ip_check": "https://ipinfo.io/json",
+        "brightdata_test": "https://geo.brdtest.com/welcome.txt",
+        "httpbin": "https://httpbin.org/ip"
+    }
+}

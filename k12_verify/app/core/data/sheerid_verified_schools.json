@@ -1,0 +1,228 @@
+{
+  "timestamp": "2026-01-05T02:18:55.540007",
+  "verified_schools": [
+    {
+      "name": "Bronx High School of Science",
+      "match_count": 26,
+      "matches": [
+        "Bronx High School Of Science (Bronx, NY)",
+        "Bronx High School Of Science (Bronx, NY)",
+        "Bronx High School Of Business (Bronx, NY)",
+        "Bronx High School For Writing And Communication Arts (Bronx, NY)",
+        "Bronx High School - Law And Community Services (Bronx, NY)"
+      ]
+    },
+    {
+      "name": "Brooklyn Technical High School",
+      "match_count": 15,
+      "matches": [
+        "Brooklyn Technical High School (Brooklyn, NY)",
+        "Brooklyn Technical High School (Brooklyn, NY)",
+        "Transit Tech Career And Technical Education (Brooklyn, NY)",
+        "Transit Tech Career And Technical Education (Brooklyn, NY)",
+        "Transit Technical Career And Technical Education High School (Brooklyn, NY)"
+      ]
+    },
+    {
+      "name": "Stuyvesant High School",
+      "match_count": 4,
+      "matches": [
+        "Stuyvesant High School (New York, NY)",
+        "Stuyvesant High School (New York, NY)",
+        "Bedford Stuyvesant Preparatory High School (Brooklyn, NY)",
+        "Don't see your school? Request to have it added."
+      ]
+    },
+    {
+      "name": "Townsend Harris High School",
+      "match_count": 3,
+      "matches": [
+        "Townsend Harris High School (Flushing, NY)",
+        "Townsend Harris High School (Flushing, NY)",
+        "Don't see your school? Request to have it added."
+      ]
+    },
+    {
+      "name": "Staten Island Technical High School",
+      "match_count": 26,
+      "matches": [
+        "The Young Women's Leadership School (Staten Island, NY)",
+        "Staten Island Technical High School (Staten Island, NY)",
+        "Staten Island Technical High School (Staten Island, NY)",
+        "Staten Island Hebrew Public Cs (Staten Island, NY)",
+        "P.S 31 William T Davis School (Staten Island, NY)"
+      ]
+    },
+    {
+      "name": "Midwood High School",
+      "match_count": 3,
+      "matches": [
+        "Midwood High School (Brooklyn, NY)",
+        "Midwood High School (Brooklyn, NY)",
+        "Don't see your school? Request to have it added."
+      ]
+    },
+    {
+      "name": "Francis Lewis High School",
+      "match_count": 3,
+      "matches": [
+        "Francis Lewis High School (Fresh Meadows, NY)",
+        "Francis Lewis High School (Fresh Meadows, NY)",
+        "Don't see your school? Request to have it added."
+      ]
+    },
+    {
+      "name": "Forest Hills High School",
+      "match_count": 20,
+      "matches": [
+        "Forest Hills High (Marshville, NC)",
+        "Forest Hills High School (Forest Hills, NY)",
+        "Forest Hills High School (Forest Hills, NY)",
+        "Forest Hills High School (Marshville, NC)",
+        "Forest Hills Montessori School (Forest Hills, NY)"
+      ]
+    },
+    {
+      "name": "South Dade Middle School",
+      "match_count": 5,
+      "matches": [
+        "South Dade Middle School (Homestead, FL)",
+        "Somerset Academy Charter High School (Homestead, FL)",
+        "Somerset Academy Charter High School (South Homestead) (Homestead, FL)",
+        "Somerset Virtual Academy (Homestead, FL)",
+        "Don't see your school? Request to have it added."
+      ]
+    },
+    {
+      "name": "Coral Gables Senior High",
+      "match_count": 4,
+      "matches": [
+        "Coral Gables Senior High School (Coral Gables, FL)",
+        "Coral Gables Senior High School (Coral Gables, FL)",
+        "Coral Gables Senior High Adult Education (Coral Gables, FL)",
+        "Don't see your school? Request to have it added."
+      ]
+    },
+    {
+      "name": "Miami Palmetto Senior High",
+      "match_count": 10,
+      "matches": [
+        "Miami Palmetto Senior High School (Miami, FL)",
+        "Miami Palmetto Senior High School (Miami, FL)",
+        "Miami Palmetto Senior High Adult (Miami, FL)",
+        "Miami Palmetto Senior High Adult (Miami, FL)",
+        "Palmetto Middle School (Miami, FL)"
+      ]
+    },
+    {
+      "name": "Miami Beach Senior High",
+      "match_count": 8,
+      "matches": [
+        "Miami Beach Senior High School (Miami Beach, FL)",
+        "Miami Beach Senior High School (Miami Beach, FL)",
+        "North Miami Beach Senior High School (Miami, FL)",
+        "North Miami Beach Senior High (North Miami Beach, FL)",
+        "North Miami Beach Senior High School (Miami, FL)"
+      ]
+    },
+    {
+      "name": "Hialeah Senior High",
+      "match_count": 21,
+      "matches": [
+        "Hialeah Senior High School (Hialeah, FL)",
+        "Hialeah Senior High School (Hialeah, FL)",
+        "Hialeah Senior High Adult Education Center (Hialeah, FL)",
+        "Hialeah Senior High Adult Education Center (Hialeah, FL)",
+        "Westland Hialeah Senior High School (Hialeah, FL)"
+      ]
+    },
+    {
+      "name": "Miami Senior High",
+      "match_count": 26,
+      "matches": [
+        "Miami Senior High School (Miami, FL)",
+        "Miami Senior High School (Miami, FL)",
+        "Miami High (Amoret, MO)",
+        "Southwest Miami Senior High School (Miami, FL)",
+        "South Miami Senior High School (Miami, FL)"
+      ]
+    },
+    {
+      "name": "Springfield High School",
+      "match_count": 26,
+      "matches": [
+        "Springfield High School (Springfield, OR)",
+        "Springfield High School (Springfield, PA)",
+        "Springfield High School (Springfield, TN)",
+        "Springfield High School (Holland, OH)",
+        "Springfield High School (Akron, OH)"
+      ]
+    },
+    {
+      "name": "Lanphier High School",
+      "match_count": 3,
+      "matches": [
+        "Graduation Prep Academy Lanier (Austin, TX)",
+        "Lanphier High School (Springfield, IL)",
+        "Don't see your school? Request to have it added."
+      ]
+    },
+    {
+      "name": "Southeast High School",
+      "match_count": 26,
+      "matches": [
+        "Southeast High (Wichita, KS)",
+        "Southeast High (Cherokee, KS)",
+        "Southeast High School (Bradenton, FL)",
+        "Southeast High School (Wichita, KS)",
+        "Southeast High School (Bradenton, FL)"
+      ]
+    },
+    {
+      "name": "Central High School",
+      "match_count": 26,
+      "matches": [
+        "Central High School (Traverse City, MI)",
+        "Central High School (Baton Rouge, LA)",
+        "Central High School (Champaign, IL)",
+        "Central High School (Pollok, TX)",
+        "Central High School (Davenport, IA)"
+      ]
+    },
+    {
+      "name": "Kickapoo High School",
+      "match_count": 6,
+      "matches": [
+        "Kickapoo High (Springfield, MO)",
+        "Kickapoo High (Viola, WI)",
+        "Kickapoo High School (Springfield, MO)",
+        "Kickapoo High School (Viola, WI)",
+        "Kickapoo Nation School (Powhattan, KS)"
+      ]
+    },
+    {
+      "name": "Springfield High School of Science and Technology",
+      "match_count": 26,
+      "matches": [
+        "Springfield High School (Springfield, OR)",
+        "Springfield High School (Springfield, PA)",
+        "Springfield High School (Springfield, TN)",
+        "Springfield High School (Holland, OH)",
+        "Springfield High School (Akron, OH)"
+      ]
+    },
+    {
+      "name": "Springfield Central High School",
+      "match_count": 26,
+      "matches": [
+        "Springfield Central High School (Springfield, MA)",
+        "Springfield High School (Springfield, PA)",
+        "Springfield Central High (Springfield, MA)",
+        "Springfield Center School (Grabill, IN)",
+        "Huntington Learning Center - Springfield (Springfield, PA)"
+      ]
+    }
+  ],
+  "not_found_schools": [],
+  "total_checked": 21
+}

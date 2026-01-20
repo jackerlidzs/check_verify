@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K12 Verify - SheerID Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --success: #22c55e;
+            --warning: #eab308;
+            --danger: #ef4444;
+            --bg: #09090b;
+            --bg-card: #18181b;
+            --bg-input: #27272a;
+            --border: #3f3f46;
+            --text: #fafafa;
+            --text-muted: #a1a1aa;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            max-width: 1400px;
+            margin: 0 auto 30px;
+        }
+
+        .logo {
+            font-size: 40px;
+        }
+
+        .title {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .title span {
+            color: var(--primary);
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .status-badge {
+            margin-left: auto;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--success);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        /* Main Layout - 2 Columns */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            min-height: calc(100vh - 220px);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+        }
+
+        /* Left Panel - Form */
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-body {
+            padding: 18px;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--text-muted);
+        }
+
+        .form-textarea {
+            width: 100%;
+            min-height: 160px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            color: var(--text);
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 12px;
+            resize: vertical;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+        }
+
+        .form-textarea::placeholder {
+            color: #52525b;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background: var(--bg-input);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Progress Steps */
+        .progress-card {
+            margin-top: 16px;
+            flex: 1;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .step.completed {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+        }
+
+        .step.active {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+        }
+
+        .step.error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .step-num {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .step.completed .step-num {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .step.active .step-num {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .step-time {
+            margin-left: auto;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* Right Panel - Log */
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .log-card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .log-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .log-controls {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .log-btn {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            background: var(--bg-input);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .log-btn:hover {
+            color: var(--text);
+            border-color: var(--text-muted);
+        }
+
+        .log-body {
+            flex: 1;
+            padding: 14px;
+            overflow: hidden;
+        }
+
+        .log-box {
+            height: 100%;
+            background: var(--bg);
+            border-radius: 8px;
+            padding: 14px;
+            overflow-y: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .log-line {
+            color: var(--text-muted);
+            padding: 2px 0;
+        }
+
+        .log-line .time {
+            color: #52525b;
+            margin-right: 8px;
+        }
+
+        .log-line.success {
+            color: var(--success);
+        }
+
+        .log-line.error {
+            color: var(--danger);
+        }
+
+        .log-line.warning {
+            color: var(--warning);
+        }
+
+        .log-line.info {
+            color: #3b82f6;
+        }
+
+        .log-line.step {
+            color: #06b6d4;
+        }
+
+        /* Result Banner */
+        .result-banner {
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .result-banner.success {
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .result-banner.error {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .result-icon {
+            font-size: 24px;
+        }
+
+        .result-content {
+            flex: 1;
+        }
+
+        .result-title {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .result-banner.success .result-title {
+            color: var(--success);
+        }
+
+        .result-banner.error .result-title {
+            color: var(--danger);
+        }
+
+        .result-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .result-action {
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            background: var(--bg-input);
+            color: var(--text);
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <span class="logo">🎓</span>
+        <h1 class="title">SheerID <span>K12 Verifier</span></h1>
+        <p class="subtitle">Teacher Verification Tool</p>
+    </header>
+
+    <!-- Main 2-Column Layout -->
+    <div class="main-layout">
+        <!-- Left Panel: Form -->
+        <div class="left-panel">
+            <div class="card">
+                <div class="card-header">
+                    📋 Verification Input
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="form-label">Cookies JSON</label>
+                        <textarea class="form-textarea" id="cookies" placeholder='Paste cookies từ EditThisCookie...
+
+[
+  {"name":"sid-verificationId","value":"..."},
+  {"name":"sid-s","value":"..."}
+]'></textarea>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary" onclick="clearForm()">🗑️ Clear</button>
+                        <button class="btn btn-primary" id="verifyBtn" onclick="startVerify()">▶ Start
+                            Verification</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Steps -->
+            <div class="card progress-card">
+                <div class="card-header">
+                    📊 Progress
+                </div>
+                <div class="card-body">
+                    <div class="steps">
+                        <div class="step completed" id="step1">
+                            <span class="step-num">✓</span>
+                            <span>Initialize</span>
+                            <span class="step-time">2.1s</span>
+                        </div>
+                        <div class="step completed" id="step2">
+                            <span class="step-num">✓</span>
+                            <span>Submit teacher info</span>
+                            <span class="step-time">3.4s</span>
+                        </div>
+                        <div class="step completed" id="step3">
+                            <span class="step-num">✓</span>
+                            <span>Skip SSO</span>
+                            <span class="step-time">1.2s</span>
+                        </div>
+                        <div class="step completed" id="step4">
+                            <span class="step-num">✓</span>
+                            <span>Get upload URL</span>
+                            <span class="step-time">0.8s</span>
+                        </div>
+                        <div class="step active" id="step5">
+                            <span class="step-num">5</span>
+                            <span>Upload document</span>
+                            <span class="step-time">...</span>
+                        </div>
+                        <div class="step" id="step6">
+                            <span class="step-num">6</span>
+                            <span>Complete upload</span>
+                            <span class="step-time"></span>
+                        </div>
+                        <div class="step" id="step7">
+                            <span class="step-num">7</span>
+                            <span>Poll result</span>
+                            <span class="step-time"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Log -->
+        <div class="right-panel">
+            <div class="card log-card">
+                <div class="card-header log-header">
+                    📜 Live Log
+                    <div class="log-controls">
+                        <button class="log-btn" onclick="copyLog()">📋 Copy</button>
+                        <button class="log-btn" onclick="clearLog()">🗑️ Clear</button>
+                    </div>
+                </div>
+                <div class="log-body">
+                    <div class="log-box" id="logBox">
+                        <div class="log-line"><span class="time">[23:15:01]</span> Waiting for cookies...</div>
+                        <div class="log-line info"><span class="time">[23:15:02]</span> ℹ️ Cookies received (12 items)
+                        </div>
+                        <div class="log-line"><span class="time">[23:15:02]</span> Parsing verification ID...</div>
+                        <div class="log-line info"><span class="time">[23:15:02]</span> 📋 Verification ID: abc123xyz
+                        </div>
+                        <div class="log-line info"><span class="time">[23:15:02]</span> 📋 Device fingerprint: fp_98765
+                        </div>
+                        <div class="log-line step"><span class="time">[23:15:03]</span> 🔵 Step 1/7: Initialize</div>
+                        <div class="log-line success"><span class="time">[23:15:05]</span> ✅ Step 1 completed</div>
+                        <div class="log-line step"><span class="time">[23:15:06]</span> 🔵 Step 2/7: Submit teacher info
+                        </div>
+                        <div class="log-line"><span class="time">[23:15:06]</span> → Teacher: Jorge Chicuri</div>
+                        <div class="log-line"><span class="time">[23:15:06]</span> → School: Hialeah Senior High</div>
+                        <div class="log-line"><span class="time">[23:15:06]</span> → Email:
+                            jorge.chicuri@dadeschools.net</div>
+                        <div class="log-line success"><span class="time">[23:15:09]</span> ✅ Step 2 completed →
+                            docUpload</div>
+                        <div class="log-line step"><span class="time">[23:15:10]</span> 🔵 Step 3/7: Skip SSO</div>
+                        <div class="log-line success"><span class="time">[23:15:11]</span> ✅ Step 3 completed</div>
+                        <div class="log-line step"><span class="time">[23:15:12]</span> 🔵 Step 4/7: Get upload URL
+                        </div>
+                        <div class="log-line"><span class="time">[23:15:12]</span> → Requesting S3 presigned URL...
+                        </div>
+                        <div class="log-line success"><span class="time">[23:15:13]</span> ✅ Upload URL obtained</div>
+                        <div class="log-line step"><span class="time">[23:15:14]</span> 🔵 Step 5/7: Upload document
+                        </div>
+                        <div class="log-line"><span class="time">[23:15:14]</span> → Generating payslip document...
+                        </div>
+                        <div class="log-line"><span class="time">[23:15:16]</span> → Document size: 72.5 KB</div>
+                        <div class="log-line"><span class="time">[23:15:17]</span> → Uploading to S3...</div>
+                    </div>
+                </div>
+
+                <!-- Result Banner -->
+                <div class="result-banner success" id="resultBanner" style="display: none;">
+                    <span class="result-icon">✅</span>
+                    <div class="result-content">
+                        <div class="result-title">Verification Approved!</div>
+                        <div class="result-meta">Jorge Chicuri • Hialeah Senior High • 23s</div>
+                    </div>
+                    <button class="result-action">Copy URL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function clearForm() {
+            document.getElementById('cookies').value = '';
+        }
+
+        function clearLog() {
+            document.getElementById('logBox').innerHTML = '<div class="log-line"><span class="time">[' + new Date().toLocaleTimeString() + ']</span> Log cleared</div>';
+        }
+
+        function copyLog() {
+            const logText = document.getElementById('logBox').innerText;
+            navigator.clipboard.writeText(logText);
+        }
+
+        function startVerify() {
+            // Demo: show result after delay
+            setTimeout(() => {
+                document.getElementById('resultBanner').style.display = 'flex';
+            }, 2000);
+        }
+    </script>
+</body>
+
+</html>

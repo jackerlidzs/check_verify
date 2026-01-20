@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYCAPS ESS - Pay Statement</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 15px;
+        }
+
+        .payslip-container {
+            width: 750px;
+            background: white;
+            border: 1px solid #ccc;
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        /* NYC Gov Header */
+        .nyc-header {
+            background: #003366;
+            color: white;
+            padding: 8px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nyc-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nyc-logo-icon {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nyc-logo-text {
+            font-size: 12px;
+        }
+
+        .nyc-logo-text span {
+            font-weight: bold;
+        }
+
+        .ess-text {
+            font-size: 11px;
+            opacity: 0.9;
+        }
+
+        /* Pay Statement Header */
+        .statement-header {
+            background: #e8e8e8;
+            padding: 10px 15px;
+            border-bottom: 2px solid #003366;
+        }
+
+        .statement-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #003366;
+            text-transform: uppercase;
+        }
+
+        /* Employee Info Section */
+        .employee-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid #999;
+        }
+
+        .info-section {
+            padding: 10px 15px;
+        }
+
+        .info-section:first-child {
+            border-right: 1px solid #999;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 2px 0;
+        }
+
+        .info-label {
+            color: #333;
+            font-weight: normal;
+        }
+
+        .info-value {
+            font-weight: bold;
+            color: #000;
+        }
+
+        /* Main Table */
+        .main-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .main-table th {
+            background: #003366;
+            color: white;
+            padding: 6px 10px;
+            text-align: left;
+            font-size: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .main-table th.amount-col {
+            text-align: right;
+            width: 90px;
+        }
+
+        .main-table td {
+            padding: 4px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .main-table td.amount {
+            text-align: right;
+            font-family: 'Courier New', monospace;
+        }
+
+        .main-table tr.subtotal {
+            background: #f0f0f0;
+            font-weight: bold;
+        }
+
+        .main-table tr.subtotal td {
+            border-top: 2px solid #003366;
+            border-bottom: 2px solid #003366;
+            padding: 6px 10px;
+        }
+
+        .section-header {
+            background: #e8e8e8;
+            font-weight: bold;
+            color: #003366;
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .column {
+            border-right: 1px solid #999;
+        }
+
+        .column:last-child {
+            border-right: none;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: #003366;
+            color: white;
+            padding: 12px 15px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .summary-item {
+            text-align: center;
+        }
+
+        .summary-label {
+            font-size: 9px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        .summary-value {
+            font-size: 16px;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+        }
+
+        .summary-ytd {
+            font-size: 9px;
+            opacity: 0.8;
+        }
+
+        .net-pay-box {
+            background: #00aa44;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        /* Leave Balances */
+        .leave-section {
+            border-top: 1px solid #999;
+            padding: 10px 15px;
+            background: #f9f9f9;
+        }
+
+        .leave-title {
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 8px;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        .leave-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .leave-item {
+            text-align: center;
+            background: white;
+            padding: 6px;
+            border: 1px solid #ddd;
+        }
+
+        .leave-type {
+            font-size: 9px;
+            color: #666;
+        }
+
+        .leave-value {
+            font-size: 14px;
+            font-weight: bold;
+            color: #003366;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 8px 15px;
+            border-top: 1px solid #999;
+            display: flex;
+            justify-content: space-between;
+            font-size: 9px;
+            color: #666;
+            background: #f5f5f5;
+        }
+
+        .footer-left {
+            display: flex;
+            gap: 20px;
+        }
+
+        .notice {
+            color: #cc0000;
+            font-weight: bold;
+        }
+
+        /* Print timestamp */
+        .print-info {
+            text-align: right;
+            padding: 5px 15px;
+            font-size: 9px;
+            color: #666;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="payslip-container">
+        <!-- NYC Gov Header -->
+        <div class="nyc-header">
+            <div class="nyc-logo">
+                <div class="nyc-logo-icon">NYC</div>
+                <div class="nyc-logo-text">
+                    <span>Employee Self Service</span><br>
+                    NYCAPS
+                </div>
+            </div>
+            <div class="ess-text">Electronic Pay Statement (EStub)</div>
+        </div>
+
+        <!-- Print Timestamp -->
+        <div class="print-info">
+            Printed: <span id="printDate">12/20/2025 10:34:22 AM</span> | Reference #: <span id="refNum">1234567</span>
+        </div>
+
+        <!-- Statement Header -->
+        <div class="statement-header">
+            <div class="statement-title">Pay Statement - Pay Period Ending <span id="payPeriodEnd">12/14/2025</span>
+            </div>
+        </div>
+
+        <!-- Employee Info -->
+        <div class="employee-info">
+            <div class="info-section">
+                <div class="info-row">
+                    <span class="info-label">Employee Name:</span>
+                    <span class="info-value" id="employeeName">CONNOR, SARAH J</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Employee ID:</span>
+                    <span class="info-value" id="employeeId">1234567</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Agency:</span>
+                    <span class="info-value" id="agency">DEPT OF EDUCATION</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Title:</span>
+                    <span class="info-value" id="title">TEACHER</span>
+                </div>
+            </div>
+            <div class="info-section">
+                <div class="info-row">
+                    <span class="info-label">Pay Period:</span>
+                    <span class="info-value" id="payPeriod">12/01/2025 - 12/14/2025</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Pay Date:</span>
+                    <span class="info-value" id="payDate">12/20/2025</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Fed Filing Status:</span>
+                    <span class="info-value">MARRIED FILING JOINTLY</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Pension #:</span>
+                    <span class="info-value" id="pensionNum">TRS-9876543</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two Column: Earnings and Deductions -->
+        <div class="two-column">
+            <!-- Earnings Column -->
+            <div class="column">
+                <table class="main-table">
+                    <thead>
+                        <tr>
+                            <th>Earnings</th>
+                            <th class="amount-col">Current</th>
+                            <th class="amount-col">YTD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Regular Pay</td>
+                            <td class="amount" id="regularPay">3,400.00</td>
+                            <td class="amount">81,600.00</td>
+                        </tr>
+                        <tr>
+                            <td>Longevity Pay</td>
+                            <td class="amount">125.00</td>
+                            <td class="amount">3,000.00</td>
+                        </tr>
+                        <tr>
+                            <td>Differential</td>
+                            <td class="amount">83.33</td>
+                            <td class="amount">2,000.00</td>
+                        </tr>
+                        <tr>
+                            <td>Per Session</td>
+                            <td class="amount">250.00</td>
+                            <td class="amount">4,500.00</td>
+                        </tr>
+                        <tr class="subtotal">
+                            <td>GROSS PAY</td>
+                            <td class="amount" id="grossPay">3,858.33</td>
+                            <td class="amount">91,100.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Deductions Column -->
+            <div class="column">
+                <table class="main-table">
+                    <thead>
+                        <tr>
+                            <th>Deductions</th>
+                            <th class="amount-col">Current</th>
+                            <th class="amount-col">YTD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="section-header">
+                            <td colspan="3">Taxes</td>
+                        </tr>
+                        <tr>
+                            <td>Federal Withholding</td>
+                            <td class="amount">462.99</td>
+                            <td class="amount">10,932.00</td>
+                        </tr>
+                        <tr>
+                            <td>NY State Tax</td>
+                            <td class="amount">231.50</td>
+                            <td class="amount">5,466.00</td>
+                        </tr>
+                        <tr>
+                            <td>NYC Resident Tax</td>
+                            <td class="amount">150.47</td>
+                            <td class="amount">3,552.90</td>
+                        </tr>
+                        <tr>
+                            <td>Social Security (OASDI)</td>
+                            <td class="amount">239.22</td>
+                            <td class="amount">5,648.20</td>
+                        </tr>
+                        <tr>
+                            <td>Medicare</td>
+                            <td class="amount">55.95</td>
+                            <td class="amount">1,320.95</td>
+                        </tr>
+                        <tr class="section-header">
+                            <td colspan="3">Benefits & Retirement</td>
+                        </tr>
+                        <tr>
+                            <td>TRS Contribution</td>
+                            <td class="amount">231.50</td>
+                            <td class="amount">5,466.00</td>
+                        </tr>
+                        <tr>
+                            <td>Health Insurance</td>
+                            <td class="amount">0.00</td>
+                            <td class="amount">0.00</td>
+                        </tr>
+                        <tr>
+                            <td>UFT Dues</td>
+                            <td class="amount">67.76</td>
+                            <td class="amount">1,599.74</td>
+                        </tr>
+                        <tr>
+                            <td>TDA (403b)</td>
+                            <td class="amount">200.00</td>
+                            <td class="amount">4,800.00</td>
+                        </tr>
+                        <tr class="subtotal">
+                            <td>TOTAL DEDUCTIONS</td>
+                            <td class="amount">1,639.39</td>
+                            <td class="amount">38,785.79</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-section">
+            <div class="summary-item">
+                <div class="summary-label">Gross Pay</div>
+                <div class="summary-value">$3,858.33</div>
+                <div class="summary-ytd">YTD: $91,100.00</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Taxes</div>
+                <div class="summary-value">$1,140.13</div>
+                <div class="summary-ytd">YTD: $26,920.05</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Deductions</div>
+                <div class="summary-value">$499.26</div>
+                <div class="summary-ytd">YTD: $11,865.74</div>
+            </div>
+            <div class="summary-item">
+                <div class="net-pay-box">
+                    <div class="summary-label">Net Pay</div>
+                    <div class="summary-value" id="netPay">$2,218.94</div>
+                    <div class="summary-ytd">YTD: $52,314.21</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leave Balances -->
+        <div class="leave-section">
+            <div class="leave-title">Leave Balances</div>
+            <div class="leave-grid">
+                <div class="leave-item">
+                    <div class="leave-type">Sick (CAR)</div>
+                    <div class="leave-value">14.5</div>
+                </div>
+                <div class="leave-item">
+                    <div class="leave-type">Annual</div>
+                    <div class="leave-value">10.0</div>
+                </div>
+                <div class="leave-item">
+                    <div class="leave-type">Personal</div>
+                    <div class="leave-value">3.0</div>
+                </div>
+                <div class="leave-item">
+                    <div class="leave-type">Comp Time</div>
+                    <div class="leave-value">0.0</div>
+                </div>
+                <div class="leave-item">
+                    <div class="leave-type">FMLA Avail</div>
+                    <div class="leave-value">480.0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-left">
+                <span>Direct Deposit: CHASE ****4521</span>
+                <span>Questions? Contact NYCAPS Central: (212) 669-8000</span>
+            </div>
+            <div class="notice">CONFIDENTIAL - EMPLOYEE COPY</div>
+        </div>
+    </div>
+
+</body>
+
+</html>

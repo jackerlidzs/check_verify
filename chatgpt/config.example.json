@@ -1,0 +1,28 @@
+{
+    "email_provider": {
+        "type": "smailpro",
+        "smailpro": {
+            "rapidapi_key": "YOUR_RAPIDAPI_KEY",
+            "domain": null
+        }
+    },
+    "telegram": {
+        "api_id": "YOUR_TELEGRAM_API_ID",
+        "api_hash": "YOUR_TELEGRAM_API_HASH",
+        "bot_username": "TempMail_org_bot",
+        "session_file": "data/telegram_session"
+    },
+    "proxy": {
+        "enabled": false,
+        "type": "isp",
+        "host": "your-proxy-host.com",
+        "port": 33335,
+        "username": "your-proxy-username",
+        "password": "your-proxy-password"
+    },
+    "signup": {
+        "password_length": 14,
+        "headless": false,
+        "timeout": 60000
+    }
+}

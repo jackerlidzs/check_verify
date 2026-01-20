@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @font-face {
+            font-family: 'Janelotus';
+            src: url('../font/SVN-Janelotus.otf') format('opentype');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Georgia, serif;
+            font-size: 15px;
+            line-height: 1.4;
+            color: #000;
+            background: #e0e4e8;
+            padding: 20px;
+        }
+
+        .letter-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #003366 0%, #004488 100%);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .district-info {
+            flex: 1;
+        }
+
+        .district-name {
+            font-size: 15pt;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .district-address {
+            font-size: 9pt;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .logo-placeholder {
+            width: 65px;
+            height: 65px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 13pt;
+            color: #003366;
+        }
+
+        .letter-body {
+            padding: 20px 30px;
+        }
+
+        .ref-number {
+            font-size: 9pt;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .date-line {
+            text-align: right;
+            margin-bottom: 15px;
+            font-size: 10pt;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 14pt;
+            font-weight: bold;
+            color: #003366;
+            margin: 20px 0;
+            text-decoration: underline;
+        }
+
+        .greeting {
+            margin-bottom: 12px;
+        }
+
+        .body-para {
+            text-align: justify;
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
+
+        .offer-box {
+            border: 2px solid #003366;
+            margin: 15px 0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .offer-box h3 {
+            background: #003366;
+            color: white;
+            padding: 8px 15px;
+            font-size: 10pt;
+            margin: 0;
+        }
+
+        .offer-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .offer-table td {
+            padding: 6px 12px;
+            border-bottom: 1px dotted #ccc;
+            font-size: 15px;
+        }
+
+        .offer-table td:first-child {
+            font-weight: bold;
+            width: 150px;
+            color: #003366;
+        }
+
+        .terms-section {
+            margin: 15px 0;
+            font-size: 15px;
+        }
+
+        .terms-section h4 {
+            color: #003366;
+            margin-bottom: 8px;
+            font-size: 11pt;
+        }
+
+        .terms-list {
+            margin-left: 18px;
+        }
+
+        .terms-list li {
+            margin-bottom: 4px;
+        }
+
+        .acceptance-section {
+            margin-top: 20px;
+            padding: 18px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .acceptance-section h4 {
+            margin-bottom: 12px;
+            color: #003366;
+            font-size: 11pt;
+        }
+
+        .signature-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .signature-block {
+            width: 45%;
+        }
+
+        .signature-name {
+            font-family: 'Janelotus', cursive;
+            font-size: 18pt;
+            color: #000000;
+            height: 30px;
+            border-bottom: 1px solid #000;
+            margin-bottom: 4px;
+        }
+
+        .signature-label {
+            font-size: 9pt;
+            color: #666;
+        }
+
+        .signature-title {
+            font-size: 8pt;
+            color: #333;
+            font-style: italic;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            text-align: center;
+            font-size: 8pt;
+            color: #666;
+            padding: 12px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="letter-container">
+        <div class="header">
+            <div class="district-info">
+                <div class="district-name">SPRINGFIELD UNIFIED SCHOOL DISTRICT</div>
+                <div class="district-address">
+                    1234 Education Boulevard, Springfield, TX 75001<br>
+                    Tel: (555) 123-4567 | www.springfieldisd.edu
+                </div>
+            </div>
+            <div class="logo-placeholder">SUSD</div>
+        </div>
+
+        <div class="letter-body">
+            <div class="ref-number">Ref: HR/OFFER/2024/1234567</div>
+            <div class="date-line">Date: December 27, 2024</div>
+
+            <div class="greeting"><strong>Dear Sarah J. Connor,</strong></div>
+
+            <div class="title">OFFER OF EMPLOYMENT</div>
+
+            <div class="body-para">
+                We are pleased to offer you the position of <strong>Faculty - Science Department</strong>
+                with Springfield Unified School District, subject to the terms and conditions outlined below.
+                This offer is contingent upon satisfactory completion of all pre-employment requirements.
+            </div>
+
+            <div class="offer-box">
+                <h3>POSITION DETAILS</h3>
+                <table class="offer-table">
+                    <tr>
+                        <td>Position Title:</td>
+                        <td>Faculty - Science Department (FTE 1.0)</td>
+                    </tr>
+                    <tr>
+                        <td>Employee ID:</td>
+                        <td>E-1234567</td>
+                    </tr>
+                    <tr>
+                        <td>Work Location:</td>
+                        <td>Springfield North High School</td>
+                    </tr>
+                    <tr>
+                        <td>Employment Type:</td>
+                        <td>Full-Time, 10-Month Contract</td>
+                    </tr>
+                    <tr>
+                        <td>Start Date:</td>
+                        <td>August 15, 2024</td>
+                    </tr>
+                    <tr>
+                        <td>Contract Period:</td>
+                        <td>2024-2025 Academic Year</td>
+                    </tr>
+                    <tr>
+                        <td>Annual Salary:</td>
+                        <td>$58,500.00 (Step 5, BA+30)</td>
+                    </tr>
+                    <tr>
+                        <td>Pay Schedule:</td>
+                        <td>Bi-weekly (26 pay periods)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="terms-section">
+                <h4>Terms and Conditions:</h4>
+                <ul class="terms-list">
+                    <li>Valid state teaching certification must be maintained</li>
+                    <li>Satisfactory completion of background check and fingerprinting</li>
+                    <li>Proof of eligibility to work in the United States</li>
+                    <li>Completion of new employee orientation program</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h4>Benefits Include:</h4>
+                <ul class="terms-list">
+                    <li>State Teachers Retirement System (TRS) enrollment</li>
+                    <li>Health, dental, and vision insurance (80% employer contribution)</li>
+                    <li>Paid sick leave and personal days per district policy</li>
+                </ul>
+            </div>
+
+            <div class="acceptance-section">
+                <h4>ACCEPTANCE OF OFFER</h4>
+                <div class="body-para">
+                    Please sign below to indicate your acceptance of this offer. Return signed copy to
+                    Human Resources within 10 business days.
+                </div>
+                <div class="signature-row">
+                    <div class="signature-block">
+                        <div class="signature-name">Sarah J. Connor</div>
+                        <div class="signature-label">Employee Signature</div>
+                        <div class="signature-title">Date: December 27, 2024</div>
+                    </div>
+                    <div class="signature-block">
+                        <div class="signature-name">Dr. Michael R. Thompson</div>
+                        <div class="signature-label">HR Director Signature</div>
+                        <div class="signature-title">Chief Human Resources Officer, SUSD</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Springfield Unified School District | Human Resources | Document ID: OFR-2024-1234567
+        </div>
+    </div>
+</body>
+
+</html>

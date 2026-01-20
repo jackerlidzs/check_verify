@@ -1,0 +1,5 @@
+# Example data - Replace with real veteran data
+# Format: firstName|lastName|branch|birthDate|dischargeDate
+# Note: dischargeDate must be within 12 months (after 2024-12-29)
+
+# ADD YOUR REAL DATA BELOW:

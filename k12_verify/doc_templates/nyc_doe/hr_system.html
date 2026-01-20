@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #1a1a2e;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .browser-mockup {
+            width: 900px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .browser-header {
+            background: linear-gradient(180deg, #e8e8e8 0%, #d4d4d4 100%);
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.red {
+            background: #ff5f57;
+        }
+
+        .dot.yellow {
+            background: #febc2e;
+        }
+
+        .dot.green {
+            background: #28c840;
+        }
+
+        .url-bar {
+            flex: 1;
+            background: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .nycaps-header {
+            background: #003399;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nycaps-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+        }
+
+        .nycaps-seal {
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 9px;
+            color: #003399;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .nycaps-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .nycaps-subtitle {
+            font-size: 11px;
+            opacity: 0.9;
+        }
+
+        .user-info {
+            color: white;
+            text-align: right;
+            font-size: 11px;
+        }
+
+        .nav-tabs {
+            background: #002266;
+            display: flex;
+            gap: 2px;
+            padding: 0 20px;
+        }
+
+        .nav-tab {
+            padding: 10px 18px;
+            color: white;
+            font-size: 11px;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .nav-tab.active {
+            background: #FF6600;
+            font-weight: 600;
+        }
+
+        .content-area {
+            padding: 20px;
+            background: white;
+        }
+
+        .page-title {
+            font-size: 16px;
+            color: #003399;
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #FF6600;
+        }
+
+        .info-panel {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .panel-header {
+            background: #003399;
+            color: white;
+            padding: 8px 12px;
+            margin: -15px -15px 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .info-item {
+            display: flex;
+        }
+
+        .info-label {
+            width: 120px;
+            font-size: 11px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-size: 11px;
+            color: #333;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            font-size: 11px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #003399;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #FF6600;
+            color: white;
+        }
+
+        .timestamp {
+            font-size: 10px;
+            color: #999;
+            text-align: right;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="browser-mockup">
+        <div class="browser-header">
+            <div class="browser-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+            </div>
+            <div class="url-bar">🔒 https://a127.nycaps.nycnet/psp/essprd/EMPLOYEE/EMPL/h/</div>
+        </div>
+
+        <div class="nycaps-header">
+            <div class="nycaps-logo">
+                <div class="nycaps-seal">NYC<br>CAPS</div>
+                <div>
+                    <div class="nycaps-title">NYCAPS Employee Self-Service</div>
+                    <div class="nycaps-subtitle">New York City Department of Education</div>
+                </div>
+            </div>
+            <div class="user-info">
+                Welcome, <strong>Sarah J. Connor</strong><br>
+                EE ID: 1234567 | Last Login: 12/27/2024 10:45 AM
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <div class="nav-tab">Home</div>
+            <div class="nav-tab active">Pay and Tax Information</div>
+            <div class="nav-tab">Benefits</div>
+            <div class="nav-tab">Personal Information</div>
+            <div class="nav-tab">Time and Labor</div>
+        </div>
+
+        <div class="content-area">
+            <div class="page-title">Employee Profile Summary</div>
+
+            <div class="info-panel">
+                <div class="panel-header">Personal Information</div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Employee Name:</span>
+                        <span class="info-value">Sarah J. Connor</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Employee ID:</span>
+                        <span class="info-value">1234567</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Payroll #:</span>
+                        <span class="info-value">040</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Work Unit:</span>
+                        <span class="info-value">M015</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-panel">
+                <div class="panel-header">Position Information</div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Job Title:</span>
+                        <span class="info-value">Teacher</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Location:</span>
+                        <span class="info-value">PS 123 Manhattan</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Department:</span>
+                        <span class="info-value">Science Department</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Hire Date:</span>
+                        <span class="info-value">August 15, 2018</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Status:</span>
+                        <span class="info-value">Active - Full Time</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Distribution #:</span>
+                        <span class="info-value">001</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary">View My Last Pay Stub</button>
+                <button class="btn btn-secondary">View W-2</button>
+                <button class="btn btn-primary">Update Personal Info</button>
+            </div>
+
+            <div class="timestamp">Page generated: 12/27/2024 10:45:32 AM EST</div>
+        </div>
+    </div>
+</body>
+
+</html>

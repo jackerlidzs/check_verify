@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  # MySQL Database Service
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-tgbot
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root_password_123}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-tgbot_verify}
+      - MYSQL_USER=${MYSQL_USER:-tgbot_user}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - tgbot_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-root_password_123}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Telegram Bot Service
+  tgbot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tgbot-verify
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+      - PYTHONUNBUFFERED=1
+      # Telegram Bot Configuration
+      - BOT_TOKEN=${BOT_TOKEN}
+      - CHANNEL_USERNAME=${CHANNEL_USERNAME:-@pk_oa}
+      - CHANNEL_URL=${CHANNEL_URL:-https://t.me/pk_oa}
+      - ADMIN_USER_ID=${ADMIN_USER_ID}
+      # MySQL Configuration
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_USER=${MYSQL_USER:-tgbot_user}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-tgbot_verify}
+      # Feature Configuration
+      - VERIFY_COST=${VERIFY_COST:-1}
+      - CHECKIN_REWARD=${CHECKIN_REWARD:-1}
+      - INVITE_REWARD=${INVITE_REWARD:-2}
+      - REGISTER_REWARD=${REGISTER_REWARD:-1}
+      # Proxy Configuration (Qv2ray SOCKS5)
+      - PROXY_URL=${PROXY_URL:-socks5://host.docker.internal:10808}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - tgbot_network
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+# Networks
+networks:
+  tgbot_network:
+    driver: bridge
+
+# Volumes
+volumes:
+  mysql_data:
+    driver: local

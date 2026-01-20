@@ -1,0 +1,59 @@
+{
+  "accounts": [
+    {
+      "id": "account_1",
+      "email": "your_email_1@example.com",
+      "password": "your_password_1",
+      "access_token": "",
+      "refresh_token": "",
+      "session_token": "",
+      "cookies": [],
+      "status": "active",
+      "last_used": null,
+      "verified_k12": false,
+      "notes": ""
+    },
+    {
+      "id": "account_2",
+      "email": "your_email_2@example.com",
+      "password": "your_password_2",
+      "access_token": "",
+      "refresh_token": "",
+      "session_token": "",
+      "cookies": [],
+      "status": "active",
+      "last_used": null,
+      "verified_k12": false,
+      "notes": ""
+    },
+    {
+      "email": "rbt4clpyb6a@erzi.me",
+      "password": "o4vMT4%GWz3$",
+      "created_at": "2026-01-05T10:04:10.533549",
+      "status": "active"
+    },
+    {
+      "email": "37960lwixpp@tgnb.tech",
+      "password": "a@0nQ9SUkHhX",
+      "created_at": "2026-01-05T10:05:04.102730",
+      "status": "active"
+    },
+    {
+      "email": "rp11mlj6ufs@36d.de5.net",
+      "password": "fG6akQMpOJ55",
+      "created_at": "2026-01-05T10:06:15.193489",
+      "status": "active"
+    },
+    {
+      "email": "1aouuel0om9@bjedu.tech",
+      "password": "jIzMPJeireJv",
+      "created_at": "2026-01-05T10:15:16.033402",
+      "status": "active"
+    }
+  ],
+  "config": {
+    "current_account_index": 0,
+    "rotate_on_fail": true,
+    "max_retries_per_account": 3
+  }
+}

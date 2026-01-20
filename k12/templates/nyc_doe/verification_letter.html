@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @font-face {
+            font-family: 'Janelotus';
+            src: url('../font/SVN-Janelotus.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: white;
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        .letter-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .letterhead {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #003399;
+            margin-bottom: 30px;
+        }
+
+        .nyc-seal {
+            width: 80px;
+            height: 80px;
+            background: #003399;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .seal-large {
+            font-size: 14px;
+        }
+
+        .letterhead-text {
+            flex: 1;
+        }
+
+        .dept-name {
+            font-family: 'Merriweather', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #003399;
+        }
+
+        .dept-address {
+            font-size: 11px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .letter-date {
+            text-align: right;
+            margin-bottom: 30px;
+            font-size: 12px;
+            color: #333;
+        }
+
+        .letter-title {
+            font-family: 'Merriweather', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #003399;
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 10px;
+            background: #f5f7fa;
+            border-left: 4px solid #FF6600;
+        }
+
+        .salutation {
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .letter-body p {
+            margin-bottom: 15px;
+            font-size: 12px;
+            text-align: justify;
+        }
+
+        .employee-box {
+            background: #f5f7fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .box-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #003399;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #FF6600;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .info-item {
+            font-size: 11px;
+        }
+
+        .info-label {
+            color: #666;
+            font-weight: 600;
+        }
+
+        .info-value {
+            color: #333;
+        }
+
+        .closing {
+            margin-top: 30px;
+            font-size: 12px;
+        }
+
+        .signature-section {
+            margin-top: 50px;
+        }
+
+        .signature-name {
+            font-family: 'Janelotus', cursive;
+            font-size: 22pt;
+            color: #000000;
+            margin-bottom: 0;
+        }
+
+        .signature-line {
+            width: 250px;
+            border-top: 1px solid #333;
+            padding-top: 5px;
+        }
+
+        .signature-title {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            font-size: 9px;
+            color: #888;
+            text-align: center;
+        }
+
+        .verification-stamp {
+            position: absolute;
+            bottom: 120px;
+            right: 60px;
+            width: 100px;
+            height: 100px;
+            border: 3px solid #003399;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #003399;
+            font-size: 8px;
+            font-weight: 700;
+            text-align: center;
+            transform: rotate(-15deg);
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="letter-container">
+        <div class="letterhead">
+            <div class="nyc-seal">
+                <span>CITY OF</span>
+                <span class="seal-large">NEW YORK</span>
+                <span>★ ★ ★</span>
+            </div>
+            <div class="letterhead-text">
+                <div class="dept-name">New York City Department of Education</div>
+                <div class="dept-address">
+                    52 Chambers Street, New York, NY 10007 | Tel: (212) 374-0200 | www.schools.nyc.gov
+                </div>
+            </div>
+        </div>
+
+        <div class="letter-date">December 27, 2024</div>
+
+        <div class="letter-title">EMPLOYMENT VERIFICATION LETTER</div>
+
+        <div class="salutation">To Whom It May Concern:</div>
+
+        <div class="letter-body">
+            <p>This letter serves as official verification of employment for the individual named below. The New York
+                City Department of Education confirms that the following person is currently employed as a member of our
+                educational staff.</p>
+
+            <div class="employee-box">
+                <div class="box-title">Employee Information</div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Full Name:</span>
+                        <span class="info-value">Sarah J. Connor</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Employee ID:</span>
+                        <span class="info-value">E-1234567</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Position:</span>
+                        <span class="info-value">Faculty - Science Department (FTE 1.0)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Payroll #:</span>
+                        <span class="info-value">040</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Assignment Location:</span>
+                        <span class="info-value">Springfield North High School</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Original Hire Date:</span>
+                        <span class="info-value">August 15, 2018</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Employment Status:</span>
+                        <span class="info-value">Active - Full Time</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Work Unit:</span>
+                        <span class="info-value">M015</span>
+                    </div>
+                </div>
+            </div>
+
+            <p>This verification is provided in response to a request for employment confirmation. If you require any
+                additional information, please contact the NYC DOE Human Resources Division at (212) 374-0200.</p>
+        </div>
+
+        <div class="closing">
+            <p>Sincerely,</p>
+        </div>
+
+        <div class="signature-section">
+            <div class="signature-block">
+                <div class="signature-name">Dr. Michael Thompson</div>
+                <div class="signature-line"></div>
+                <div class="signature-title">Director, Human Resources Division</div>
+                <div class="signature-title">New York City Department of Education</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            NYC Department of Education | Human Resources Division
+        </div>
+    </div>
+</body>
+
+</html>

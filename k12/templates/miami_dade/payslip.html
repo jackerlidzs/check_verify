@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #e8eef4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .payslip-container {
+            width: 700px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+        }
+
+        .wave-header {
+            height: 8px;
+            background: linear-gradient(90deg, #0066CC 0%, #00A3E0 50%, #FFD200 100%);
+        }
+
+        .payslip-header {
+            background: #0066CC;
+            color: white;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-box {
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 9px;
+            color: #0066CC;
+            font-weight: 700;
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .header-sub {
+            font-size: 10px;
+            opacity: 0.9;
+        }
+
+        .pay-advice-tag {
+            background: #FFD200;
+            color: #333;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .period-bar {
+            background: #f0f7fc;
+            padding: 12px 25px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .period-item {
+            display: flex;
+            gap: 8px;
+            font-size: 11px;
+        }
+
+        .period-label {
+            color: #666;
+        }
+
+        .period-value {
+            color: #0066CC;
+            font-weight: 600;
+        }
+
+        .employee-bar {
+            padding: 15px 25px;
+            border-bottom: 3px solid #FFD200;
+        }
+
+        .employee-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0066CC;
+        }
+
+        .employee-info {
+            display: flex;
+            gap: 25px;
+            margin-top: 6px;
+            font-size: 10px;
+            color: #666;
+        }
+
+        .payslip-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px 25px;
+        }
+
+        .pay-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .card-title {
+            background: #0066CC;
+            color: white;
+            padding: 8px 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .card-content {
+            padding: 12px;
+        }
+
+        .pay-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .pay-line:last-child {
+            border-bottom: none;
+        }
+
+        .pay-label {
+            color: #666;
+        }
+
+        .pay-amount {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .total-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 12px;
+            background: #e8f4fc;
+            font-size: 11px;
+            font-weight: 700;
+            color: #0066CC;
+            margin-top: 8px;
+            border-radius: 4px;
+        }
+
+        .leave-section {
+            grid-column: span 2;
+        }
+
+        .leave-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 12px;
+        }
+
+        .leave-item {
+            text-align: center;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .leave-type {
+            font-size: 8px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .leave-hours {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0066CC;
+            margin-top: 3px;
+        }
+
+        .net-pay-bar {
+            background: linear-gradient(135deg, #0066CC 0%, #00A3E0 100%);
+            color: white;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .net-label {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .net-amount {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .footer-bar {
+            padding: 12px 25px;
+            font-size: 9px;
+            color: #999;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="payslip-container">
+        <div class="wave-header"></div>
+
+        <div class="payslip-header">
+            <div class="header-logo">
+                <div class="logo-box">M-DCPS</div>
+                <div>
+                    <div class="header-title">Pay Advice Statement</div>
+                    <div class="header-sub">Miami-Dade County Public Schools</div>
+                </div>
+            </div>
+            <div class="pay-advice-tag">Bi-Weekly</div>
+        </div>
+
+        <div class="period-bar">
+            <div class="period-item">
+                <span class="period-label">Pay Period:</span>
+                <span class="period-value">12/01/2025 - 12/14/2025</span>
+            </div>
+            <div class="period-item">
+                <span class="period-label">Pay Date:</span>
+                <span class="period-value">12/20/2025</span>
+            </div>
+            <div class="period-item">
+                <span class="period-label">Check Date:</span>
+                <span class="period-value">12/20/2025</span>
+            </div>
+            <div class="period-item">
+                <span class="period-label">Advice #:</span>
+                <span class="period-value">2025-24-12345678</span>
+            </div>
+        </div>
+
+        <div class="employee-bar">
+            <div class="employee-name">CONNOR, SARAH J</div>
+            <div class="employee-info">
+                <span><strong>Employee ID:</strong> 123456</span>
+                <span><strong>Location:</strong> PS 123 Manhattan</span>
+                <span><strong>Direct Deposit:</strong> ✓ Active</span>
+            </div>
+        </div>
+
+        <div class="payslip-grid">
+            <div class="pay-card">
+                <div class="card-title">EARNINGS</div>
+                <div class="card-content">
+                    <div class="pay-line">
+                        <span class="pay-label">Regular Salary</span>
+                        <span class="pay-amount">$3,076.92</span>
+                    </div>
+                    <div class="pay-line">
+                        <span class="pay-label">Supplements</span>
+                        <span class="pay-amount">$150.00</span>
+                    </div>
+                    <div class="total-line">
+                        <span>GROSS PAY</span>
+                        <span>$3,226.92</span>
+                    </div>
+                    <div class="pay-line" style="margin-top: 8px; border-top: 1px dashed #ccc; padding-top: 8px;">
+                        <span class="pay-label">YTD Gross</span>
+                        <span class="pay-amount" style="color: #0066CC; font-weight: 600;">$42,350.04</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pay-card">
+                <div class="card-title">TAXES (Florida)</div>
+                <div class="card-content">
+                    <div class="pay-line">
+                        <span class="pay-label">Federal Income Tax</span>
+                        <span class="pay-amount">$395.00</span>
+                    </div>
+                    <div class="pay-line">
+                        <span class="pay-label">Social Security</span>
+                        <span class="pay-amount">$200.07</span>
+                    </div>
+                    <div class="pay-line">
+                        <span class="pay-label">Medicare</span>
+                        <span class="pay-amount">$46.79</span>
+                    </div>
+                    <div class="pay-line" style="color: #00A3E0;">
+                        <span class="pay-label">Florida State Tax</span>
+                        <span class="pay-amount" style="color: #00A3E0;">$0.00 ✓</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pay-card">
+                <div class="card-title">DEDUCTIONS</div>
+                <div class="card-content">
+                    <div class="pay-line">
+                        <span class="pay-label">Health Insurance</span>
+                        <span class="pay-amount">$145.00</span>
+                    </div>
+                    <div class="pay-line">
+                        <span class="pay-label">FRS Pension</span>
+                        <span class="pay-amount">$96.81</span>
+                    </div>
+                    <div class="pay-line">
+                        <span class="pay-label">Union Dues (UTD)</span>
+                        <span class="pay-amount">$48.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pay-card leave-section">
+                <div class="card-title">LEAVE HRS (Current Balance)</div>
+                <div class="leave-grid">
+                    <div class="leave-item">
+                        <div class="leave-type">Full-Pay Illness</div>
+                        <div class="leave-hours">96.0</div>
+                    </div>
+                    <div class="leave-item">
+                        <div class="leave-type">Half-Pay Illness</div>
+                        <div class="leave-hours">48.0</div>
+                    </div>
+                    <div class="leave-item">
+                        <div class="leave-type">Vacation</div>
+                        <div class="leave-hours">64.0</div>
+                    </div>
+                    <div class="leave-item">
+                        <div class="leave-type">Personal</div>
+                        <div class="leave-hours">16.0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="net-pay-bar">
+            <div class="net-label">NET PAY</div>
+            <div class="net-amount">$2,295.25</div>
+        </div>
+
+        <div class="footer-bar">
+            dadeschools.net | Employee Portal Pay Advice | Generated: 12/20/2025 | Florida has no state income tax
+        </div>
+    </div>
+</body>
+
+</html>

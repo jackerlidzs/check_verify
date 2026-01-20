@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        @font-face {
+            font-family: 'Janelotus';
+            src: url('../font/SVN-Janelotus.otf') format('opentype');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            line-height: 1.4;
+            color: #000;
+            background: #e8ecef;
+            padding: 20px;
+        }
+
+        .letter-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .wave-accent {
+            height: 6px;
+            background: linear-gradient(90deg, #0066CC 0%, #00A3E0 50%, #FFD200 100%);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0066CC 0%, #00A3E0 100%);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .district-info {
+            flex: 1;
+        }
+
+        .district-name {
+            font-size: 14pt;
+            font-weight: 600;
+        }
+
+        .district-address {
+            font-size: 9pt;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        .logo-placeholder {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 11pt;
+            color: #0066CC;
+            text-align: center;
+        }
+
+        .letter-body {
+            padding: 20px 30px;
+        }
+
+        .ref-number {
+            font-size: 9pt;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .date-line {
+            text-align: right;
+            margin-bottom: 15px;
+            font-size: 10pt;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 14pt;
+            font-weight: 700;
+            color: #0066CC;
+            margin: 20px 0;
+        }
+
+        .greeting {
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .body-para {
+            text-align: justify;
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
+
+        .offer-box {
+            border: 2px solid #0066CC;
+            margin: 15px 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .offer-box h3 {
+            background: #FFD200;
+            color: #333;
+            padding: 8px 15px;
+            font-size: 10pt;
+            margin: 0;
+        }
+
+        .offer-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .offer-table td {
+            padding: 6px 12px;
+            border-bottom: 1px dotted #ccc;
+            font-size: 15px;
+        }
+
+        .offer-table td:first-child {
+            font-weight: 600;
+            width: 150px;
+            color: #0066CC;
+        }
+
+        .terms-section {
+            margin: 15px 0;
+            font-size: 15px;
+        }
+
+        .terms-section h4 {
+            color: #0066CC;
+            margin-bottom: 8px;
+            font-size: 11pt;
+        }
+
+        .terms-list {
+            margin-left: 18px;
+        }
+
+        .terms-list li {
+            margin-bottom: 4px;
+        }
+
+        .acceptance-section {
+            margin-top: 20px;
+            padding: 18px;
+            background: #f0f7fc;
+            border-left: 4px solid #FFD200;
+            border-radius: 8px;
+        }
+
+        .acceptance-section h4 {
+            margin-bottom: 12px;
+            color: #0066CC;
+            font-size: 11pt;
+        }
+
+        .signature-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .signature-block {
+            width: 45%;
+        }
+
+        .signature-name {
+            font-family: 'Janelotus', cursive;
+            font-size: 18pt;
+            color: #000000;
+            height: 30px;
+            border-bottom: 1px solid #000;
+            margin-bottom: 4px;
+        }
+
+        .signature-label {
+            font-size: 9pt;
+            color: #666;
+        }
+
+        .signature-title {
+            font-size: 8pt;
+            color: #333;
+            font-style: italic;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #0066CC 0%, #00A3E0 100%);
+            text-align: center;
+            font-size: 8pt;
+            color: white;
+            padding: 12px;
+        }
+
+        .florida-tag {
+            background: #FFD200;
+            color: #333;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 8pt;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="letter-container">
+        <div class="wave-accent"></div>
+        <div class="header">
+            <div class="district-info">
+                <div class="district-name">MIAMI-DADE COUNTY PUBLIC SCHOOLS</div>
+                <div class="district-address">
+                    1450 NE 2nd Avenue, Miami, FL 33132<br>
+                    Tel: (305) 995-1000 | www.dadeschools.net
+                </div>
+            </div>
+            <div class="logo-placeholder">M-DCPS</div>
+        </div>
+
+        <div class="letter-body">
+            <div class="ref-number">Ref: HR/OFFER/2024/123456</div>
+            <div class="date-line">Date: December 27, 2024</div>
+
+            <div class="greeting">Dear Sarah J. Connor,</div>
+
+            <div class="title">OFFER OF EMPLOYMENT</div>
+
+            <div class="body-para">
+                We are pleased to offer you the position of <strong>Faculty - Science Department</strong>
+                with Miami-Dade County Public Schools, subject to the terms and conditions outlined below.
+                This offer is contingent upon satisfactory completion of all pre-employment requirements.
+            </div>
+
+            <div class="offer-box">
+                <h3>POSITION DETAILS</h3>
+                <table class="offer-table">
+                    <tr>
+                        <td>Position Title:</td>
+                        <td>Faculty - Science Department (FTE 1.0)</td>
+                    </tr>
+                    <tr>
+                        <td>Employee ID:</td>
+                        <td>E-123456</td>
+                    </tr>
+                    <tr>
+                        <td>Work Location:</td>
+                        <td>Springfield North High School</td>
+                    </tr>
+                    <tr>
+                        <td>Employment Type:</td>
+                        <td>Full-Time, 10-Month Contract</td>
+                    </tr>
+                    <tr>
+                        <td>Start Date:</td>
+                        <td>August 15, 2024</td>
+                    </tr>
+                    <tr>
+                        <td>Contract Period:</td>
+                        <td>2024-2025 Academic Year</td>
+                    </tr>
+                    <tr>
+                        <td>Annual Salary:</td>
+                        <td>$58,500.00 (Step 5, BA+30)</td>
+                    </tr>
+                    <tr>
+                        <td>Pay Schedule:</td>
+                        <td>Bi-weekly (26 pay periods)</td>
+                    </tr>
+                    <tr>
+                        <td>Badge Login:</td>
+                        <td>Will be activated upon start date</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="terms-section">
+                <h4>Terms and Conditions:</h4>
+                <ul class="terms-list">
+                    <li>Valid Florida teaching certification must be maintained</li>
+                    <li>Satisfactory completion of background check and fingerprinting</li>
+                    <li>Proof of eligibility to work in the United States</li>
+                    <li>Subject to Florida Education Code and M-DCPS policies</li>
+                </ul>
+            </div>
+
+            <div class="terms-section">
+                <h4>Benefits Include:</h4>
+                <ul class="terms-list">
+                    <li>Florida Retirement System (FRS) enrollment</li>
+                    <li>Health, dental, and vision insurance through M-DCPS Benefits</li>
+                    <li>No Florida State Income Tax</li>
+                    <li>Paid sick leave and personal days per UTD contract</li>
+                </ul>
+            </div>
+
+            <div class="acceptance-section">
+                <h4>ACCEPTANCE OF OFFER</h4>
+                <div class="body-para">
+                    Please sign below to indicate your acceptance of this offer. Return signed copy to
+                    Human Resources within 10 business days.
+                </div>
+                <div class="signature-row">
+                    <div class="signature-block">
+                        <div class="signature-name">Sarah J. Connor</div>
+                        <div class="signature-label">Employee Signature</div>
+                        <div class="signature-title">Date: December 27, 2024</div>
+                    </div>
+                    <div class="signature-block">
+                        <div class="signature-name">Dr. Dawn M. Baglos</div>
+                        <div class="signature-label">HR Director Signature</div>
+                        <div class="signature-title">Chief Human Capital Officer, M-DCPS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            M-DCPS Human Resources | Document ID: OFR-2024-123456 | <span class="florida-tag">🌴 Florida</span>
+        </div>
+    </div>
+</body>
+
+</html>

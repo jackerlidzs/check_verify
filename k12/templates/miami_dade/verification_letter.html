@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @font-face {
+            font-family: 'Janelotus';
+            src: url('../font/SVN-Janelotus.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: white;
+            padding: 40px;
+            line-height: 1.5;
+        }
+
+        .letter-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .wave-header {
+            height: 8px;
+            background: linear-gradient(90deg, #0066CC 0%, #00A3E0 50%, #FFD200 100%);
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .letterhead {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .mdcps-logo {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #0066CC 0%, #00A3E0 100%);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .letterhead-text {
+            flex: 1;
+        }
+
+        .district-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0066CC;
+        }
+
+        .district-address {
+            font-size: 10px;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .letter-date {
+            text-align: right;
+            margin-bottom: 25px;
+            font-size: 11px;
+            color: #333;
+        }
+
+        .letter-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 12px;
+            background: linear-gradient(135deg, #0066CC 0%, #00A3E0 100%);
+            border-radius: 8px;
+        }
+
+        .salutation {
+            margin-bottom: 18px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .letter-body p {
+            margin-bottom: 14px;
+            font-size: 11px;
+            text-align: justify;
+        }
+
+        .employee-card {
+            background: linear-gradient(135deg, #f0f7fc 0%, #e8f4fc 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #FFD200;
+        }
+
+        .card-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #0066CC;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title::before {
+            content: "◆";
+            color: #FFD200;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .info-item {
+            font-size: 10px;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        .info-label {
+            color: #888;
+            font-weight: 500;
+            font-size: 9px;
+        }
+
+        .info-value {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .closing {
+            margin-top: 25px;
+            font-size: 11px;
+        }
+
+        .signature-section {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .signature-block {
+            width: 220px;
+        }
+
+        .signature-name {
+            font-family: 'Janelotus', cursive;
+            font-size: 22pt;
+            color: #000000;
+            margin-bottom: 0;
+        }
+
+        .signature-line {
+            border-top: 1px solid #333;
+            padding-top: 5px;
+        }
+
+        .signature-title {
+            font-size: 10px;
+            color: #666;
+        }
+
+        .badge-stamp {
+            width: 80px;
+            height: 80px;
+            border: 3px solid #0066CC;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #0066CC;
+            font-size: 7px;
+            font-weight: 700;
+            text-align: center;
+            transform: rotate(-10deg);
+        }
+
+        .badge-stamp .verified {
+            font-size: 10px;
+            color: #00A3E0;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 8px;
+            color: #888;
+            text-align: center;
+        }
+
+        .florida-note {
+            background: #FFD200;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 8px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="letter-container">
+        <div class="wave-header"></div>
+
+        <div class="letterhead">
+            <div class="mdcps-logo">M-DCPS</div>
+            <div class="letterhead-text">
+                <div class="district-name">Miami-Dade County Public Schools</div>
+                <div class="district-address">
+                    1450 NE 2nd Avenue, Miami, FL 33132 | Tel: (305) 995-1000 | www.dadeschools.net
+                </div>
+            </div>
+        </div>
+
+        <div class="letter-date">December 27, 2024</div>
+
+        <div class="letter-title">EMPLOYMENT VERIFICATION</div>
+
+        <div class="salutation">To Whom It May Concern:</div>
+
+        <div class="letter-body">
+            <p>Miami-Dade County Public Schools, one of the largest school districts in the United States, hereby
+                confirms the employment status of the individual listed below.</p>
+
+            <div class="employee-card">
+                <div class="card-title">Employee Details</div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Full Name</div>
+                        <div class="info-value">Sarah J. Connor</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Employee ID</div>
+                        <div class="info-value">123456</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Position</div>
+                        <div class="info-value">Faculty - Science Department (FTE 1.0)</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Badge Status</div>
+                        <div class="info-value">✓ Active</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Work Location</div>
+                        <div class="info-value">Springfield North High School</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Hire Date</div>
+                        <div class="info-value">August 15, 2018</div>
+                    </div>
+                </div>
+            </div>
+
+            <p>For additional verification or questions, please contact our Human Resources department at (305) 995-1000
+                or via the Employee Portal at dadeschools.net.</p>
+        </div>
+
+        <div class="closing">
+            <p>Respectfully,</p>
+        </div>
+
+        <div class="signature-section">
+            <div class="signature-block">
+                <div class="signature-name">Dr. Patricia Moore</div>
+                <div class="signature-line"></div>
+                <div class="signature-title">Chief Human Resources Officer</div>
+                <div class="signature-title">Miami-Dade County Public Schools</div>
+            </div>
+            <div class="badge-stamp">
+                <span class="verified">VERIFIED</span>
+                <span>M-DCPS</span>
+                <span>HR DEPT</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            Miami-Dade County Public Schools | Human Resources Division
+        </div>
+    </div>
+</body>
+
+</html>

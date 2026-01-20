@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #e0e4e8;
+        }
+
+        /* NYC DOE - Professional Horizontal Teacher ID */
+        .id-card {
+            width: 420px;
+            height: 265px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        /* Top header bar */
+        .header-bar {
+            background: #003399;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 15px;
+        }
+
+        .nyc-seal {
+            width: 36px;
+            height: 36px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 6px;
+            color: #003399;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.1;
+            flex-shrink: 0;
+        }
+
+        .seal-nyc {
+            font-size: 10px;
+        }
+
+        .header-text {
+            flex: 1;
+            color: white;
+        }
+
+        .dept-title {
+            font-size: 8px;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+
+        .dept-name {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .badge-type {
+            background: #FF6600;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main content area */
+        .card-body {
+            display: flex;
+            padding: 15px 20px;
+            gap: 18px;
+        }
+
+        .photo-section {
+            flex-shrink: 0;
+        }
+
+        .photo-box {
+            width: 95px;
+            height: 115px;
+            background: linear-gradient(135deg, #f0f2f5 0%, #e8eaed 100%);
+            border: 3px solid #003399;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            color: #666;
+            text-align: center;
+        }
+
+        .info-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .employee-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #003399;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        .employee-title {
+            font-size: 11px;
+            color: #FF6600;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .info-item {
+            background: #f5f7fa;
+            padding: 6px 10px;
+            border-radius: 4px;
+            border-left: 3px solid #003399;
+        }
+
+        .info-label {
+            font-size: 7px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-size: 11px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .info-item.full-width {
+            grid-column: span 2;
+        }
+
+        /* Footer */
+        .card-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #f0f2f5;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid #FF6600;
+        }
+
+        .barcode-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .barcode {
+            font-family: 'Libre Barcode 39', monospace;
+            font-size: 32px;
+            color: #333;
+            letter-spacing: -3px;
+        }
+
+        .id-display {
+            background: #003399;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .validity {
+            text-align: right;
+        }
+
+        .valid-label {
+            font-size: 8px;
+            color: #666;
+        }
+
+        .valid-date {
+            font-size: 13px;
+            font-weight: 700;
+            color: #003399;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="id-card">
+        <div class="header-bar">
+            <div class="nyc-seal">
+                <span>CITY OF</span>
+                <span class="seal-nyc">NYC</span>
+            </div>
+            <div class="header-text">
+                <div class="dept-title">NEW YORK CITY</div>
+                <div class="dept-name">Department of Education</div>
+            </div>
+            <div class="badge-type">TEACHER</div>
+        </div>
+
+        <div class="card-body">
+            <div class="photo-section">
+                <div class="photo-box">
+                    EMPLOYEE<br>PHOTO
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="employee-name">Sarah J. Connor</div>
+                <div class="employee-title">Science Teacher</div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Employee ID</div>
+                        <div class="info-value">1234567</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Payroll #</div>
+                        <div class="info-value">040</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Work Unit</div>
+                        <div class="info-value">M015</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Department</div>
+                        <div class="info-value">Science</div>
+                    </div>
+                    <div class="info-item full-width">
+                        <div class="info-label">School Assignment</div>
+                        <div class="info-value">PS 123 Manhattan</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="barcode-section">
+                <div class="barcode">*1234567*</div>
+                <div class="id-display">ID# 1234567</div>
+            </div>
+            <div class="validity">
+                <div class="valid-label">Valid Through</div>
+                <div class="valid-date">2024-25</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

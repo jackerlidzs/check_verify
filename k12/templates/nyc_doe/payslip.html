@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .payslip-container {
+            width: 700px;
+            background: white;
+            border: 2px solid #003399;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .payslip-header {
+            background: #003399;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nycaps-seal {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 8px;
+            color: #003399;
+            font-weight: 700;
+        }
+
+        .header-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .header-subtitle {
+            font-size: 10px;
+            opacity: 0.9;
+        }
+
+        .estub-label {
+            background: #FF6600;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .info-bar {
+            background: #f8f9fa;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            font-size: 10px;
+        }
+
+        .info-group {
+            display: flex;
+            gap: 25px;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 5px;
+        }
+
+        .info-label {
+            color: #666;
+            font-weight: 600;
+        }
+
+        .info-value {
+            color: #333;
+        }
+
+        .employee-section {
+            padding: 15px 20px;
+            border-bottom: 2px solid #FF6600;
+        }
+
+        .employee-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #003399;
+        }
+
+        .employee-details {
+            display: flex;
+            gap: 30px;
+            margin-top: 8px;
+            font-size: 10px;
+            color: #666;
+        }
+
+        .payslip-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 15px 20px;
+        }
+
+        .section {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .section-header {
+            background: #003399;
+            color: white;
+            padding: 6px 10px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .section-body {
+            padding: 10px;
+        }
+
+        .line-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 9px;
+            padding: 4px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .line-item:last-child {
+            border-bottom: none;
+        }
+
+        .line-label {
+            color: #666;
+        }
+
+        .line-value {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .totals-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 8px 10px;
+            background: #f8f9fa;
+            margin-top: 5px;
+        }
+
+        .net-pay-section {
+            background: #003399;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .net-pay-label {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .net-pay-amount {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .footer {
+            padding: 10px 20px;
+            font-size: 8px;
+            color: #999;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="payslip-container">
+        <div class="payslip-header">
+            <div class="header-left">
+                <div class="nycaps-seal">NYC<br>CAPS</div>
+                <div>
+                    <div class="header-title">NYCAPS Electronic Pay Statement</div>
+                    <div class="header-subtitle">New York City Department of Education</div>
+                </div>
+            </div>
+            <div class="estub-label">EStub</div>
+        </div>
+
+        <div class="info-bar">
+            <div class="info-group">
+                <div class="info-item">
+                    <span class="info-label">Pay Period:</span>
+                    <span class="info-value">12/01/2025 - 12/14/2025</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Pay Date:</span>
+                    <span class="info-value">12/20/2025</span>
+                </div>
+            </div>
+            <div class="info-group">
+                <div class="info-item">
+                    <span class="info-label">Check #:</span>
+                    <span class="info-value">Z1234567</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="employee-section">
+            <div class="employee-name">CONNOR, SARAH J</div>
+            <div class="employee-details">
+                <span><strong>EE ID:</strong> 1234567</span>
+                <span><strong>Payroll #:</strong> 040</span>
+                <span><strong>Work Unit:</strong> M015</span>
+                <span><strong>Dist #:</strong> 001</span>
+            </div>
+        </div>
+
+        <div class="payslip-body">
+            <div class="section">
+                <div class="section-header">EARNINGS</div>
+                <div class="section-body">
+                    <div class="line-item">
+                        <span class="line-label">Regular Pay</span>
+                        <span class="line-value">$3,076.92</span>
+                    </div>
+                    <div class="line-item">
+                        <span class="line-label">Longevity</span>
+                        <span class="line-value">$100.00</span>
+                    </div>
+                    <div class="totals-row">
+                        <span>GROSS PAY</span>
+                        <span>$3,176.92</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">TAXES</div>
+                <div class="section-body">
+                    <div class="line-item">
+                        <span class="line-label">Federal Income Tax</span>
+                        <span class="line-value">$380.00</span>
+                    </div>
+                    <div class="line-item">
+                        <span class="line-label">NY State Tax</span>
+                        <span class="line-value">$145.00</span>
+                    </div>
+                    <div class="line-item">
+                        <span class="line-label">NYC Local Tax</span>
+                        <span class="line-value">$95.00</span>
+                    </div>
+                    <div class="line-item">
+                        <span class="line-label">Social Security</span>
+                        <span class="line-value">$196.97</span>
+                    </div>
+                    <div class="line-item">
+                        <span class="line-label">Medicare</span>
+                        <span class="line-value">$46.07</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">DEDUCTIONS</div>
+                <div class="section-body">
+                    <div class="line-item">
+                        <span class="line-label">Health Insurance</span>
+                        <span class="line-value">$125.00</span>
+                    </div>
+                    <div class="line-item">
+                        <span class="line-label">TRS Pension</span>
+                        <span class="line-value">$200.00</span>
+                    </div>
+                    <div class="line-item">
+                        <span class="line-label">Union Dues</span>
+                        <span class="line-value">$55.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">LEAVE BALANCES (Hours)</div>
+                <div class="section-body">
+                    <div class="line-item">
+                        <span class="line-label">Annual Leave</span>
+                        <span class="line-value">48.0</span>
+                    </div>
+                    <div class="line-item">
+                        <span class="line-label">Sick Leave</span>
+                        <span class="line-value">120.0</span>
+                    </div>
+                    <div class="line-item">
+                        <span class="line-label">Personal Days</span>
+                        <span class="line-value">24.0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="net-pay-section">
+            <div class="net-pay-label">NET PAY (Direct Deposit)</div>
+            <div class="net-pay-amount">$1,933.88</div>
+        </div>
+
+        <div class="footer">
+            NYCAPS Employee Self-Service | Printed: 12/20/2025 10:34:22 AM | This is an official electronic pay
+            statement
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+[
+  {
+    "district": "nyc_doe",
+    "teacher_data": {
+      "first_name": "John",
+      "last_name": "Callahan",
+      "full_name": "John Callahan",
+      "email": "john.callahan@schools.nyc.gov",
+      "birth_date": "1978-12-03",
+      "school_id": "R605",
+      "school_name": "Staten Island Technical High School",
+      "school_city": "Staten Island",
+      "school_state": "NY",
+      "position": "Russian Teacher",
+      "hire_date": "2007-08-20",
+      "department": "General Education",
+      "employee_id": "1541558",
+      "employee_id_formatted": "E-1541558",
+      "salary_step": "Step 5, BA+30",
+      "annual_salary": 68000,
+      "pension_number": "TRS-1541558"
+    },
+    "document_data": {
+      "full_name": "John Callahan",
+      "employee_id": 1541558,
+      "employee_id_formatted": "E-1541558",
+      "position": "Russian Teacher",
+      "department": "General Education",
+      "annual_salary": 68000,
+      "salary_step": "Step 5, BA+30",
+      "salary_formatted": "$68,000.00 (Step 5, BA+30)",
+      "school_name": "Staten Island Technical High School",
+      "district_name": "New York City Department of Education",
+      "hire_date": "2007-08-20"
+    },
+    "consistency_passed": true
+  },
+  {
+    "district": "miami_dade",
+    "teacher_data": {
+      "first_name": "Emily",
+      "last_name": "Baron",
+      "full_name": "Emily Baron",
+      "email": "ebaron@dadeschools.net",
+      "birth_date": "1991-08-07",
+      "school_id": "5901",
+      "school_name": "South Dade Middle School",
+      "school_city": "Homestead",
+      "school_state": "FL",
+      "position": "Elementary Education",
+      "hire_date": "2019-08-12",
+      "department": "General Education",
+      "employee_id": "7758472",
+      "employee_id_formatted": "E-7758472",
+      "salary_step": "Step 4, BA+30",
+      "annual_salary": 66500,
+      "pension_number": "TRS-7758472"
+    },
+    "document_data": {
+      "full_name": "Emily Baron",
+      "employee_id": 7758472,
+      "employee_id_formatted": "E-7758472",
+      "position": "Elementary Education",
+      "department": "General Education",
+      "annual_salary": 66500,
+      "salary_step": "Step 4, BA+30",
+      "salary_formatted": "$66,500.00 (Step 4, BA+30)",
+      "school_name": "South Dade Middle School",
+      "district_name": "Miami-Dade County Public Schools",
+      "hire_date": "2019-08-12"
+    },
+    "consistency_passed": true
+  },
+  {
+    "district": "springfield_high",
+    "teacher_data": {
+      "first_name": "Helen",
+      "last_name": "Mitchell",
+      "full_name": "Helen Mitchell",
+      "email": "hmitchell@sps186.org",
+      "birth_date": "1985-07-25",
+      "school_id": "SE186",
+      "school_name": "Southeast High School",
+      "school_city": "Springfield",
+      "school_state": "IL",
+      "position": "Biology Teacher",
+      "hire_date": "2014-08-18",
+      "department": "Science Department",
+      "employee_id": "2906656",
+      "employee_id_formatted": "E-2906656",
+      "salary_step": "Step 5, BA+30",
+      "annual_salary": 65000,
+      "pension_number": "TRS-2906656"
+    },
+    "document_data": {
+      "full_name": "Helen Mitchell",
+      "employee_id": 2906656,
+      "employee_id_formatted": "E-2906656",
+      "position": "Biology Teacher",
+      "department": "Science Department",
+      "annual_salary": 65000,
+      "salary_step": "Step 5, BA+30",
+      "salary_formatted": "$65,000.00 (Step 5, BA+30)",
+      "school_name": "Southeast High School",
+      "district_name": "Springfield High School",
+      "hire_date": "2014-08-18"
+    },
+    "consistency_passed": true
+  }
+]

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @font-face {
+            font-family: 'Janelotus';
+            src: url('../font/SVN-Janelotus.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @page {
+            size: 8.5in 11in;
+            margin: 0.75in;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Georgia, serif;
+            font-size: 14pt;
+            line-height: 1.6;
+            color: #000;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+
+        .letter-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px 60px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            min-height: 1000px;
+        }
+
+        .letterhead {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px double #003366;
+            padding-bottom: 20px;
+        }
+
+        .district-name {
+            font-size: 18pt;
+            font-weight: bold;
+            color: #003366;
+            letter-spacing: 1px;
+        }
+
+        .district-address {
+            font-size: 12pt;
+            color: #444;
+            margin-top: 5px;
+        }
+
+        .department {
+            font-size: 11pt;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #003366;
+        }
+
+        .date-section {
+            text-align: right;
+            margin-bottom: 30px;
+        }
+
+        .recipient {
+            margin-bottom: 20px;
+        }
+
+        .salutation {
+            margin-bottom: 15px;
+        }
+
+        .body-text {
+            text-align: justify;
+            margin-bottom: 15px;
+            text-indent: 40px;
+        }
+
+        .employee-details {
+            margin: 20px 0;
+            padding: 15px 20px;
+            background: #f9f9f9;
+            border-left: 4px solid #003366;
+        }
+
+        .employee-details table {
+            width: 100%;
+        }
+
+        .employee-details td {
+            padding: 6px 12px;
+            font-size: 13pt;
+        }
+
+        .employee-details td:first-child {
+            font-weight: bold;
+            width: 180px;
+        }
+
+        .closing {
+            margin-top: 40px;
+        }
+
+        .signature-block {
+            margin-top: 60px;
+        }
+
+        .signature-name {
+            font-family: 'Janelotus', cursive;
+            font-size: 22pt;
+            color: #000000;
+            height: 35px;
+            margin-bottom: 0;
+        }
+
+        .signature-line {
+            border-bottom: 1px solid #000;
+            width: 250px;
+            margin-bottom: 5px;
+        }
+
+        .signature-title {
+            font-size: 11pt;
+            color: #444;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 50px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 9pt;
+            color: #666;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+
+        .seal {
+            position: absolute;
+            right: 80px;
+            bottom: 150px;
+            width: 100px;
+            height: 100px;
+            border: 3px solid #003366;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 8pt;
+            color: #003366;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="letter-container">
+        <div class="letterhead">
+            <div class="district-name">SPRINGFIELD UNIFIED SCHOOL DISTRICT</div>
+            <div class="district-address">
+                1234 Education Boulevard, Springfield, TX 75001<br>
+                Phone: (555) 123-4567 | Fax: (555) 123-4568
+            </div>
+            <div class="department">Office of Human Resources</div>
+        </div>
+
+        <div class="date-section">
+            <span id="currentDate">December 27, 2024</span>
+        </div>
+
+        <div class="recipient">
+            To Whom It May Concern:
+        </div>
+
+        <div class="body-text">
+            This letter is to certify and confirm the employment status of <strong>Sarah J. Connor</strong>
+            with the Springfield Unified School District.
+        </div>
+
+        <div class="employee-details">
+            <table>
+                <tr>
+                    <td>Employee Name:</td>
+                    <td>Sarah J. Connor</td>
+                </tr>
+                <tr>
+                    <td>Employee ID:</td>
+                    <td>E-1234567</td>
+                </tr>
+                <tr>
+                    <td>Position:</td>
+                    <td>Faculty - Science Department (FTE 1.0)</td>
+                </tr>
+                <tr>
+                    <td>School/Location:</td>
+                    <td>Springfield North High School</td>
+                </tr>
+                <tr>
+                    <td>Employment Type:</td>
+                    <td>Full-Time, Permanent</td>
+                </tr>
+                <tr>
+                    <td>Date of Hire:</td>
+                    <td>August 15, 2018</td>
+                </tr>
+                <tr>
+                    <td>Current Status:</td>
+                    <td>Active Employee</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="body-text">
+            The above-named individual has been continuously employed by our district in good standing
+            since the date of hire indicated above. This individual holds a valid state teaching
+            certification and meets all requirements for their assigned position.
+        </div>
+
+        <div class="body-text">
+            If you require any additional information regarding this employee's status, please do not
+            hesitate to contact our Human Resources department at the number listed above.
+        </div>
+
+        <div class="closing">
+            Sincerely,
+        </div>
+
+        <div class="signature-block">
+            <div class="signature-name">Dr. Michael Thompson</div>
+            <div class="signature-line"></div>
+            <div class="signature-title">Director of Human Resources</div>
+            <div class="signature-title">Springfield Unified School District</div>
+        </div>
+
+        <div class="seal">
+            OFFICIAL<br>
+            SEAL<br>
+            SUSD
+        </div>
+
+        <div class="footer">
+            Springfield Unified School District | Human Resources Division
+        </div>
+    </div>
+</body>
+
+</html>

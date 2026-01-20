@@ -1,0 +1,28 @@
+{
+    "telegram": {
+        "api_id": "37410686",
+        "api_hash": "7fa9edad48b082bbbddd84c7a4ac581e",
+        "bot_username": "bjfreemail_bot",
+        "email_domains": [
+            "bjedu.tech",
+            "36d.de5.net",
+            "erzi.me",
+            "hxedu.tech",
+            "tgnb.tech"
+        ]
+    },
+    "proxy": {
+        "host": "gw.dataimpulse.com",
+        "sticky_port": 10000,
+        "rotating_port": 823,
+        "user": "bc62638d394b903e219e",
+        "pass": "db385400a5a64b74",
+        "country": "us",
+        "state": "california,florida,newyork,texas"
+    },
+    "signup": {
+        "password": "",
+        "num_accounts": 5,
+        "delay_between": 30
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "api_id": "37410686",
+    "api_hash": "7fa9edad48b082bbbddd84c7a4ac581e",
+    "session_file": "telegram_session",
+    "bots": {
+        "tempmail": {
+            "username": "TempMail_org_bot",
+            "commands": {
+                "new": "/new",
+                "start": "/start",
+                "list": "/list"
+            }
+        },
+        "bjfreemail": {
+            "username": "bjfreemail_bot",
+            "commands": {
+                "new": "/new",
+                "address": "/address",
+                "delete": "/delete"
+            },
+            "note": "Chinese bot - may not work"
+        }
+    }
+}

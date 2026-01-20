@@ -1,0 +1,26 @@
+# Secrets - NEVER commit these
+config.json
+
+# Telegram session
+data/telegram_session.session
+data/telegram_session.session-journal
+
+# Account data
+data/accounts.json
+
+# Screenshots (optional, can be large)
+data/screenshots/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

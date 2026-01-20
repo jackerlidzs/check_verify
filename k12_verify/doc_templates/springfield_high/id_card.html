@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School District Employee ID</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #718096;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Standard CR80 ID Card Size - 3.375" x 2.125" (scaled up for screen) */
+        .id-card {
+            width: 405px;
+            height: 255px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Top stripe */
+        .top-stripe {
+            height: 8px;
+            background: linear-gradient(90deg, #003366 0%, #003366 33%, #cc0000 33%, #cc0000 66%, #003366 66%, #003366 100%);
+        }
+
+        /* Header */
+        .card-header {
+            background: #003366;
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .district-seal {
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .seal-inner {
+            width: 38px;
+            height: 38px;
+            border: 2px solid #003366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            color: #003366;
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        .district-name {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-type {
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-top: 2px;
+        }
+
+        .school-year {
+            position: absolute;
+            top: 50px;
+            right: 15px;
+            background: #cc0000;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 3px;
+        }
+
+        /* Card Body */
+        .card-body {
+            padding: 12px 15px;
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Photo area */
+        .photo-section {
+            flex-shrink: 0;
+        }
+
+        .photo-frame {
+            width: 85px;
+            height: 100px;
+            background: #e2e8f0;
+            border: 2px solid #003366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 9px;
+            text-align: center;
+        }
+
+        /* Info section */
+        .info-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .employee-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1a202c;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 2px;
+        }
+
+        .info-row {
+            display: flex;
+            font-size: 10px;
+        }
+
+        .info-label {
+            width: 55px;
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        .info-value {
+            color: #1a202c;
+            font-weight: 600;
+        }
+
+        .position-badge {
+            display: inline-block;
+            background: #003366;
+            color: white;
+            font-size: 9px;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 6px;
+        }
+
+        /* Barcode section */
+        .barcode-section {
+            position: absolute;
+            bottom: 12px;
+            left: 15px;
+            right: 15px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .barcode-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .barcode {
+            height: 25px;
+            width: 140px;
+            background: repeating-linear-gradient(90deg,
+                    #000 0px, #000 2px,
+                    #fff 2px, #fff 4px,
+                    #000 4px, #000 5px,
+                    #fff 5px, #fff 7px,
+                    #000 7px, #000 9px,
+                    #fff 9px, #fff 10px,
+                    #000 10px, #000 13px,
+                    #fff 13px, #fff 15px,
+                    #000 15px, #000 16px,
+                    #fff 16px, #fff 19px);
+        }
+
+        .barcode-text {
+            font-size: 8px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+            margin-top: 2px;
+            letter-spacing: 1px;
+        }
+
+        .qr-code {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: 1px solid #333;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 1px;
+            padding: 3px;
+        }
+
+        .qr-code span {
+            background: #333;
+        }
+
+        .qr-code span:nth-child(2),
+        .qr-code span:nth-child(4),
+        .qr-code span:nth-child(7),
+        .qr-code span:nth-child(9),
+        .qr-code span:nth-child(11),
+        .qr-code span:nth-child(13),
+        .qr-code span:nth-child(15),
+        .qr-code span:nth-child(17),
+        .qr-code span:nth-child(19),
+        .qr-code span:nth-child(22),
+        .qr-code span:nth-child(24) {
+            background: white;
+        }
+
+        /* Security features */
+        .hologram {
+            position: absolute;
+            bottom: 70px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg,
+                    rgba(255, 215, 0, 0.3) 0%,
+                    rgba(192, 192, 192, 0.3) 25%,
+                    rgba(255, 215, 0, 0.3) 50%,
+                    rgba(192, 192, 192, 0.3) 75%,
+                    rgba(255, 215, 0, 0.3) 100%);
+            border-radius: 50%;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 90px;
+            left: 110px;
+            font-size: 45px;
+            font-weight: bold;
+            color: rgba(0, 51, 102, 0.04);
+            transform: rotate(-25deg);
+            pointer-events: none;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Bottom stripe */
+        .bottom-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #f7fafc;
+            padding: 3px 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 7px;
+            color: #718096;
+            border-top: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="id-card">
+        <div class="top-stripe"></div>
+
+        <div class="card-header">
+            <div class="district-seal">
+                <div class="seal-inner" id="sealText">NYC<br>DOE</div>
+            </div>
+            <div class="header-text">
+                <div class="district-name" id="districtName">New York City Department of Education</div>
+                <div class="card-type">STAFF ID</div>
+            </div>
+        </div>
+
+        <div class="school-year" id="schoolYear">2024-25</div>
+
+        <div class="card-body">
+            <div class="photo-section">
+                <div class="photo-frame">EMPLOYEE<br>PHOTO</div>
+            </div>
+            <div class="info-section">
+                <div>
+                    <div class="employee-name" id="employeeName">Sarah J. Connor</div>
+                    <div class="info-grid">
+                        <div class="info-row">
+                            <span class="info-label">ID #:</span>
+                            <span class="info-value" id="employeeId">1234567</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">School:</span>
+                            <span class="info-value" id="schoolName">PS 123 Manhattan</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Dept:</span>
+                            <span class="info-value" id="department">Science</span>
+                        </div>
+                    </div>
+                    <div class="position-badge" id="position">Teacher</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hologram">✓</div>
+        <div class="watermark">STAFF</div>
+
+        <div class="barcode-section">
+            <div class="barcode-area">
+                <div class="barcode"></div>
+                <div class="barcode-text" id="barcodeNum">*1234567*</div>
+            </div>
+            <div class="qr-code">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <div class="bottom-info">
+            <span>This card is property of the district. If found, return to issuing office.</span>
+            <span id="issueDate">Issued: 09/01/2024</span>
+        </div>
+    </div>
+
+</body>
+
+</html>
