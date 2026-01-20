@@ -112,13 +112,24 @@ def generate_psu_id():
 
 def generate_psu_email(first_name, last_name):
     """
-    生成 PSU 邮箱
-    格式: firstName.lastName + 3-4位数字 @psu.edu
+    Generate PSU email in official Penn State format
+    Format: {first_initial}{middle_initial}{last_initial}{3-4 digits}@psu.edu
+    Example: hkb5474@psu.edu
     """
-    digit_count = random.choice([3, 4])
-    digits = ''.join([str(random.randint(0, 9)) for _ in range(digit_count)])
-    email = f"{first_name.lower()}.{last_name.lower()}{digits}@psu.edu"
-    return email
+    # Get initials (lowercase)
+    first_init = first_name[0].lower()
+    last_init = last_name[0].lower()
+    
+    # Generate random middle initial (exclude vowels for realism)
+    consonants = 'bcdfghjklmnpqrstvwxyz'
+    mid_init = random.choice(consonants)
+    
+    # Generate 3-4 digit number
+    num_digits = random.choice([3, 4])
+    number = random.randint(10**(num_digits-1), 10**num_digits - 1)
+    
+    user_id = f"{first_init}{mid_init}{last_init}{number}"
+    return f"{user_id}@psu.edu"
 
 
 def generate_html(first_name, last_name, school_id='2565'):
