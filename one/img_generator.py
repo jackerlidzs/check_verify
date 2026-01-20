@@ -66,6 +66,15 @@ TIME_SLOTS = [
     "MoWe 4:00PM - 5:15PM",
 ]
 
+# Realistic instructor names (first initial + last name format)
+INSTRUCTOR_POOL = [
+    "J. Smith", "M. Johnson", "R. Williams", "S. Brown", "D. Jones",
+    "A. Garcia", "L. Miller", "K. Davis", "P. Rodriguez", "T. Martinez",
+    "C. Anderson", "B. Taylor", "N. Thomas", "H. Jackson", "E. White",
+    "W. Harris", "G. Martin", "F. Thompson", "V. Robinson", "Z. Clark",
+    "Y. Lewis", "Q. Lee", "X. Walker", "O. Hall", "I. Allen",
+]
+
 
 def generate_random_schedule(num_courses=None):
     """Generate random course schedule with 4-6 courses"""
@@ -75,9 +84,10 @@ def generate_random_schedule(num_courses=None):
     # Select random courses without duplicates
     courses = random.sample(COURSE_POOL, min(num_courses, len(COURSE_POOL)))
     
-    # Assign random rooms and times (no duplicates)
+    # Assign random rooms, times, and instructors (no duplicates)
     rooms = random.sample(ROOM_POOL, num_courses)
     times = random.sample(TIME_SLOTS, num_courses)
+    instructors = random.sample(INSTRUCTOR_POOL, num_courses)
     
     schedule = []
     for i, course in enumerate(courses):
@@ -88,6 +98,7 @@ def generate_random_schedule(num_courses=None):
             "time": times[i],
             "room": rooms[i],
             "credits": f"{course['credits']:.2f}",
+            "instructor": instructors[i],
         })
     
     return schedule
@@ -147,6 +158,7 @@ def generate_html(first_name, last_name, school_id='2565'):
                     <td>{course['class_nbr']}</td>
                     <td class="course-code">{course['code']}</td>
                     <td class="course-title">{course['title']}</td>
+                    <td>{course['instructor']}</td>
                     <td>{course['time']}</td>
                     <td>{course['room']}</td>
                     <td>{course['credits']}</td>
@@ -376,11 +388,12 @@ def generate_html(first_name, last_name, school_id='2565'):
         <table class="schedule-table">
             <thead>
                 <tr>
-                    <th width="10%">Class Nbr</th>
-                    <th width="15%">Course</th>
-                    <th width="35%">Title</th>
-                    <th width="20%">Days & Times</th>
-                    <th width="10%">Room</th>
+                    <th width="8%">Class Nbr</th>
+                    <th width="12%">Course</th>
+                    <th width="28%">Title</th>
+                    <th width="12%">Instructor</th>
+                    <th width="18%">Days & Times</th>
+                    <th width="12%">Room</th>
                     <th width="10%">Units</th>
                 </tr>
             </thead>
