@@ -1,25 +1,15 @@
 {
     "_comment": "Proxy Configuration - Copy to proxy.json and fill in your credentials",
-    "active_provider": "dataimpulse",
+    "active_provider": "oxylabs",
     "providers": {
-        "brightdata_dc": {
-            "name": "Bright Data Datacenter",
-            "type": "datacenter",
-            "protocol": "http",
-            "host": "brd.superproxy.io",
-            "port": 33335,
-            "username": "YOUR_BRIGHTDATA_USERNAME",
-            "password": "YOUR_BRIGHTDATA_PASSWORD",
-            "country": "us"
-        },
-        "brightdata": {
-            "name": "Bright Data Residential",
+        "oxylabs": {
+            "name": "Oxylabs Residential",
             "type": "residential",
             "protocol": "http",
-            "host": "brd.superproxy.io",
-            "port": 33335,
-            "username": "YOUR_BRIGHTDATA_USERNAME",
-            "password": "YOUR_BRIGHTDATA_PASSWORD",
+            "host": "pr.oxylabs.io",
+            "port": 7777,
+            "username": "YOUR_OXYLABS_USERNAME",
+            "password": "YOUR_OXYLABS_PASSWORD",
             "country": "us"
         },
         "dataimpulse": {
@@ -52,7 +42,6 @@
     },
     "test_urls": {
         "ip_check": "https://ipinfo.io/json",
-        "brightdata_test": "https://geo.brdtest.com/welcome.txt",
         "httpbin": "https://httpbin.org/ip"
     }
 }
