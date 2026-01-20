@@ -40,8 +40,25 @@ class MySQLDatabase:
         return pymysql.connect(**self.config)
 
     def init_database(self):
-        """Initialize database table structure"""
-        conn = self.get_connection()
+        """Initialize database table structure with retry logic for Docker startup"""
+        import time
+        max_retries = 15
+        retry_delay = 2  # seconds
+        
+        conn = None
+        for attempt in range(max_retries):
+            try:
+                conn = self.get_connection()
+                logger.info(f"Connected to MySQL successfully")
+                break
+            except pymysql.err.OperationalError as e:
+                if attempt < max_retries - 1:
+                    logger.info(f"Waiting for MySQL... attempt {attempt + 1}/{max_retries}")
+                    time.sleep(retry_delay)
+                else:
+                    logger.error(f"Failed to connect to MySQL after {max_retries} attempts")
+                    raise
+        
         cursor = conn.cursor()
 
         try:
