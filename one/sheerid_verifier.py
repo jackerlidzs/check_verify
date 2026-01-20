@@ -179,8 +179,23 @@ class SheerIDVerifier:
         email: str = None,
         birth_date: str = None,
         school_id: str = None,
+        progress_callback=None,
     ) -> Dict:
-        """执行验证流程"""
+        """执行验证流程
+        
+        Args:
+            progress_callback: Optional callable(step: int, total: int, message: str)
+                              Called to report progress during verification
+        """
+        def report_progress(step: int, total: int, message: str):
+            """Report progress to callback if provided"""
+            logger.info(f"Step {step}/{total}: {message}")
+            if progress_callback:
+                try:
+                    progress_callback(step, total, message)
+                except Exception as e:
+                    logger.warning(f"Progress callback failed: {e}")
+        
         try:
             current_step = "initial"
 
@@ -204,7 +219,7 @@ class SheerIDVerifier:
             logger.info(f"Verification ID: {self.verification_id}")
 
             # Generate student ID PNG
-            logger.info("Step 1/4: Generating student ID PNG...")
+            report_progress(1, 4, "Generating student ID document...")
             img_data = generate_image(first_name, last_name, school_id)
             file_size = len(img_data)
             logger.info(f"✅ PNG size: {file_size / 1024:.2f}KB")
@@ -215,7 +230,7 @@ class SheerIDVerifier:
             time.sleep(form_delay)
 
             # Submit student info
-            logger.info("Step 2/4: Submitting student info...")
+            report_progress(2, 4, "Submitting student info...")
             step2_body = {
                 "firstName": first_name,
                 "lastName": last_name,
@@ -255,7 +270,7 @@ class SheerIDVerifier:
 
             # Skip SSO (if required)
             if current_step in ["sso", "collectStudentPersonalInfo"]:
-                logger.info("Step 3/4: Skipping SSO verification...")
+                report_progress(3, 4, "Bypassing SSO verification...")
                 step3_data, _ = self._sheerid_request(
                     "DELETE",
                     f"{config.SHEERID_BASE_URL}/rest/v2/verification/{self.verification_id}/step/sso",
@@ -269,7 +284,7 @@ class SheerIDVerifier:
             time.sleep(upload_delay)
 
             # Upload document and complete submission
-            logger.info("Step 4/4: Requesting and uploading document...")
+            report_progress(4, 4, "Uploading document to SheerID...")
             step4_body = {
                 "files": [
                     {"fileName": "student_card.png", "mimeType": "image/png", "fileSize": file_size}

@@ -68,14 +68,52 @@ async def verify_command(update: Update, context: ContextTypes.DEFAULT_TYPE, db:
         f"💎 Starting Gemini One Pro verification...\n"
         f"Verification ID: `{verification_id}`\n"
         f"Deducted {VERIFY_COST} points\n\n"
-        "⏳ Please wait, this may take 20-40 seconds...\n"
-        "_(Adding human-like delays to avoid bot detection)_",
+        "⏳ Step 0/4: Initializing...",
         parse_mode="Markdown"
     )
 
+    # Progress tracking
+    progress_queue = []
+    
+    def progress_callback(step: int, total: int, message: str):
+        progress_queue.append((step, total, message))
+    
+    async def update_progress():
+        """Periodically update Telegram message with progress"""
+        last_step = 0
+        while True:
+            await asyncio.sleep(0.5)
+            if progress_queue:
+                step, total, msg = progress_queue[-1]
+                if step != last_step:
+                    try:
+                        progress_bar = "▓" * step + "░" * (total - step)
+                        await processing_msg.edit_text(
+                            f"💎 Gemini One Pro verification\n"
+                            f"ID: `{verification_id[:20]}...`\n\n"
+                            f"⏳ Step {step}/{total}: {msg}\n"
+                            f"[{progress_bar}]",
+                            parse_mode="Markdown"
+                        )
+                        last_step = step
+                    except Exception:
+                        pass  # Ignore rate limit errors
+
     try:
         verifier = OneVerifier(verification_id)
-        result = await asyncio.to_thread(verifier.verify)
+        
+        # Start progress updater
+        progress_task = asyncio.create_task(update_progress())
+        
+        # Run verification with progress callback
+        result = await asyncio.to_thread(verifier.verify, progress_callback=progress_callback)
+        
+        # Cancel progress updater
+        progress_task.cancel()
+        try:
+            await progress_task
+        except asyncio.CancelledError:
+            pass
 
         db.add_verification(
             user_id,
