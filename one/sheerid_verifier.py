@@ -3,8 +3,23 @@ import re
 import random
 import logging
 import time
-import httpx
 from typing import Dict, Optional, Tuple
+
+# Use curl_cffi for TLS fingerprint impersonation (bypass bot detection)
+try:
+    from curl_cffi import requests as curl_requests
+    CURL_AVAILABLE = True
+except ImportError:
+    curl_requests = None
+    CURL_AVAILABLE = False
+    import httpx
+
+# Import proxy manager for rotating proxies
+try:
+    from config.proxy_manager import get_proxy_url
+except ImportError:
+    def get_proxy_url():
+        return None
 
 from . import config
 from .name_generator import NameGenerator, generate_birth_date
@@ -25,11 +40,29 @@ class SheerIDVerifier:
     def __init__(self, verification_id: str):
         self.verification_id = verification_id
         self.device_fingerprint = self._generate_device_fingerprint()
-        self.http_client = httpx.Client(timeout=30.0)
+        self._proxy_url = get_proxy_url()
+        
+        # Use curl_cffi for TLS fingerprint impersonation
+        if CURL_AVAILABLE:
+            self.http_client = curl_requests.Session(
+                impersonate="chrome120",
+                timeout=30,
+                proxies={"http": self._proxy_url, "https": self._proxy_url} if self._proxy_url else None
+            )
+            logger.info(f"Using curl_cffi with Chrome120 TLS fingerprint" + 
+                       (f" via proxy" if self._proxy_url else ""))
+        else:
+            import httpx
+            self.http_client = httpx.Client(timeout=30.0, proxy=self._proxy_url)
+            logger.info(f"Using httpx (curl_cffi not available)" + 
+                       (f" via proxy" if self._proxy_url else ""))
 
     def __del__(self):
-        if hasattr(self, "http_client"):
-            self.http_client.close()
+        if hasattr(self, "http_client") and self.http_client:
+            try:
+                self.http_client.close()
+            except Exception:
+                pass
 
     @staticmethod
     def _generate_device_fingerprint() -> str:
@@ -125,9 +158,15 @@ class SheerIDVerifier:
         """上传 PNG 到 S3"""
         try:
             headers = {"Content-Type": "image/png"}
-            response = self.http_client.put(
-                upload_url, content=img_data, headers=headers, timeout=60.0
-            )
+            # curl_cffi uses 'data', httpx uses 'content'
+            if CURL_AVAILABLE:
+                response = self.http_client.put(
+                    upload_url, data=img_data, headers=headers, timeout=60
+                )
+            else:
+                response = self.http_client.put(
+                    upload_url, content=img_data, headers=headers, timeout=60.0
+                )
             return 200 <= response.status_code < 300
         except Exception as e:
             logger.error(f"S3 upload failed: {e}")
