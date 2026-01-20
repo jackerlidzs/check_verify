@@ -363,7 +363,7 @@ def generate_html(first_name, last_name, school_id='2565'):
             </div>
         </div>
 
-        <div class="student-card">
+        <div class="student-card" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
             <div>
                 <div class="info-label">Student Name</div>
                 <div class="info-val">{name}</div>
@@ -373,8 +373,16 @@ def generate_html(first_name, last_name, school_id='2565'):
                 <div class="info-val">{psu_id}</div>
             </div>
             <div>
+                <div class="info-label">Academic Year</div>
+                <div class="info-val">2025-2026</div>
+            </div>
+            <div>
                 <div class="info-label">Academic Program</div>
                 <div class="info-val">{major}</div>
+            </div>
+            <div>
+                <div class="info-label">Enrollment Date</div>
+                <div class="info-val">January 12, 2026</div>
             </div>
             <div>
                 <div class="info-label">Enrollment Status</div>
