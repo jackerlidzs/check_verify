@@ -4,6 +4,94 @@ from datetime import datetime
 from io import BytesIO
 import base64
 
+# Real Penn State courses from bulletins.psu.edu
+COURSE_POOL = [
+    # CMPSC Core Courses
+    {"code": "CMPSC 101", "title": "Introduction to Programming", "credits": 3},
+    {"code": "CMPSC 121", "title": "Introduction to Programming", "credits": 3},
+    {"code": "CMPSC 122", "title": "Intermediate Programming", "credits": 3},
+    {"code": "CMPSC 131", "title": "Programming and Computation I", "credits": 3},
+    {"code": "CMPSC 132", "title": "Programming and Computation II", "credits": 3},
+    {"code": "CMPSC 221", "title": "Object-Oriented Programming with Web", "credits": 3},
+    {"code": "CMPSC 311", "title": "Introduction to Systems Programming", "credits": 3},
+    {"code": "CMPSC 360", "title": "Discrete Mathematics for Computer Science", "credits": 3},
+    {"code": "CMPSC 421", "title": "Net-centric Computing", "credits": 3},
+    {"code": "CMPSC 431W", "title": "Database Management Systems", "credits": 3},
+    {"code": "CMPSC 442", "title": "Artificial Intelligence", "credits": 3},
+    {"code": "CMPSC 448", "title": "Machine Learning and AI", "credits": 3},
+    {"code": "CMPSC 461", "title": "Programming Language Concepts", "credits": 3},
+    {"code": "CMPSC 462", "title": "Data Structures", "credits": 3},
+    {"code": "CMPSC 464", "title": "Introduction to Theory of Computation", "credits": 3},
+    {"code": "CMPSC 465", "title": "Data Structures and Algorithms", "credits": 3},
+    {"code": "CMPSC 473", "title": "Operating Systems Design", "credits": 3},
+    {"code": "CMPSC 474", "title": "Compiler Design", "credits": 3},
+    {"code": "CMPSC 483W", "title": "Software Engineering Design", "credits": 3},
+    # Math/Science Support Courses
+    {"code": "MATH 140", "title": "Calculus with Analytic Geometry I", "credits": 4},
+    {"code": "MATH 141", "title": "Calculus with Analytic Geometry II", "credits": 4},
+    {"code": "MATH 220", "title": "Matrices", "credits": 2},
+    {"code": "MATH 230", "title": "Calculus and Vector Analysis", "credits": 4},
+    {"code": "STAT 318", "title": "Elementary Probability", "credits": 3},
+    {"code": "PHYS 211", "title": "General Physics: Mechanics", "credits": 4},
+    {"code": "ENGL 202C", "title": "Technical Writing", "credits": 3},
+    {"code": "CYBER 262", "title": "Introduction to Cybersecurity", "credits": 3},
+]
+
+# Real Penn State buildings and room numbers
+ROOM_POOL = [
+    "Willard 062", "Willard 101", "Willard 143", "Willard 210",
+    "Thomas 102", "Thomas 201", "Thomas 305",
+    "Westgate E101", "Westgate E201", "Westgate E302",
+    "Boucke 101", "Boucke 207", "Boucke 304",
+    "Osmond 101", "Osmond 112", "Osmond 215",
+    "IST 110", "IST 220", "IST 315",
+    "Hammond 101", "Hammond 203", "Hammond 312",
+    "Sackett 105", "Sackett 211", "Sackett 323",
+]
+
+# Realistic Penn State time slots
+TIME_SLOTS = [
+    "MoWeFr 8:00AM - 8:50AM",
+    "MoWeFr 9:05AM - 9:55AM",
+    "MoWeFr 10:10AM - 11:00AM",
+    "MoWeFr 11:15AM - 12:05PM",
+    "MoWeFr 1:25PM - 2:15PM",
+    "MoWeFr 2:30PM - 3:20PM",
+    "TuTh 8:00AM - 9:15AM",
+    "TuTh 9:45AM - 11:00AM",
+    "TuTh 11:15AM - 12:30PM",
+    "TuTh 1:35PM - 2:50PM",
+    "TuTh 3:05PM - 4:20PM",
+    "MoWe 2:30PM - 3:45PM",
+    "MoWe 4:00PM - 5:15PM",
+]
+
+
+def generate_random_schedule(num_courses=None):
+    """Generate random course schedule with 4-6 courses"""
+    if num_courses is None:
+        num_courses = random.randint(4, 6)
+    
+    # Select random courses without duplicates
+    courses = random.sample(COURSE_POOL, min(num_courses, len(COURSE_POOL)))
+    
+    # Assign random rooms and times (no duplicates)
+    rooms = random.sample(ROOM_POOL, num_courses)
+    times = random.sample(TIME_SLOTS, num_courses)
+    
+    schedule = []
+    for i, course in enumerate(courses):
+        schedule.append({
+            "class_nbr": str(random.randint(10000, 29999)),
+            "code": course["code"],
+            "title": course["title"],
+            "time": times[i],
+            "room": rooms[i],
+            "credits": f"{course['credits']:.2f}",
+        })
+    
+    return schedule
+
 
 def generate_psu_id():
     """生成随机 PSU ID (9位数字)"""
@@ -49,6 +137,20 @@ def generate_html(first_name, last_name, school_id='2565'):
         'Psychology (BA)'
     ]
     major = random.choice(majors)
+
+    # Generate random course schedule
+    schedule = generate_random_schedule()
+    course_rows = ""
+    for course in schedule:
+        course_rows += f"""
+                <tr>
+                    <td>{course['class_nbr']}</td>
+                    <td class="course-code">{course['code']}</td>
+                    <td class="course-title">{course['title']}</td>
+                    <td>{course['time']}</td>
+                    <td>{course['room']}</td>
+                    <td>{course['credits']}</td>
+                </tr>"""
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -283,46 +385,7 @@ def generate_html(first_name, last_name, school_id='2565'):
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>14920</td>
-                    <td class="course-code">CMPSC 465</td>
-                    <td class="course-title">Data Structures and Algorithms</td>
-                    <td>MoWeFr 10:10AM - 11:00AM</td>
-                    <td>Willard 062</td>
-                    <td>3.00</td>
-                </tr>
-                <tr>
-                    <td>18233</td>
-                    <td class="course-code">MATH 230</td>
-                    <td class="course-title">Calculus and Vector Analysis</td>
-                    <td>TuTh 1:35PM - 2:50PM</td>
-                    <td>Thomas 102</td>
-                    <td>4.00</td>
-                </tr>
-                <tr>
-                    <td>20491</td>
-                    <td class="course-code">CMPSC 473</td>
-                    <td class="course-title">Operating Systems Design</td>
-                    <td>MoWe 2:30PM - 3:45PM</td>
-                    <td>Westgate E201</td>
-                    <td>3.00</td>
-                </tr>
-                <tr>
-                    <td>11029</td>
-                    <td class="course-code">ENGL 202C</td>
-                    <td class="course-title">Technical Writing</td>
-                    <td>Fr 1:25PM - 2:15PM</td>
-                    <td>Boucke 304</td>
-                    <td>3.00</td>
-                </tr>
-                <tr>
-                    <td>15502</td>
-                    <td class="course-code">STAT 318</td>
-                    <td class="course-title">Elementary Probability</td>
-                    <td>TuTh 9:05AM - 10:20AM</td>
-                    <td>Osmond 112</td>
-                    <td>3.00</td>
-                </tr>
+                {course_rows}
             </tbody>
         </table>
 
