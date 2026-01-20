@@ -66,13 +66,14 @@ TIME_SLOTS = [
     "MoWe 4:00PM - 5:15PM",
 ]
 
-# Realistic instructor names (first initial + last name format)
+# Realistic instructor names (last name only - matches LionPATH format)
 INSTRUCTOR_POOL = [
-    "J. Smith", "M. Johnson", "R. Williams", "S. Brown", "D. Jones",
-    "A. Garcia", "L. Miller", "K. Davis", "P. Rodriguez", "T. Martinez",
-    "C. Anderson", "B. Taylor", "N. Thomas", "H. Jackson", "E. White",
-    "W. Harris", "G. Martin", "F. Thompson", "V. Robinson", "Z. Clark",
-    "Y. Lewis", "Q. Lee", "X. Walker", "O. Hall", "I. Allen",
+    "Smith", "Johnson", "Williams", "Brown", "Jones",
+    "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
+    "Anderson", "Taylor", "Thomas", "Jackson", "White",
+    "Harris", "Martin", "Thompson", "Robinson", "Clark",
+    "Lewis", "Lee", "Walker", "Hall", "Allen",
+    "Young", "King", "Wright", "Scott", "Green",
 ]
 
 
