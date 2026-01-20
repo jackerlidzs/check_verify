@@ -8,7 +8,7 @@ from typing import Optional
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from config import VERIFY_COST
+from settings import VERIFY_COST
 from database_mysql import Database
 from one.sheerid_verifier import SheerIDVerifier as OneVerifier
 from k12.sheerid_verifier import SheerIDVerifier as K12Verifier

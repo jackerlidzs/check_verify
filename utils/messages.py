@@ -1,5 +1,5 @@
 """Message templates"""
-from config import CHANNEL_URL, VERIFY_COST, HELP_NOTION_URL
+from settings import CHANNEL_URL, VERIFY_COST, HELP_NOTION_URL
 
 
 def get_welcome_message(full_name: str, invited_by: bool = False) -> str:

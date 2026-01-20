@@ -6,7 +6,7 @@ from datetime import datetime
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from config import ADMIN_USER_ID
+from settings import ADMIN_USER_ID
 from database_mysql import Database
 from utils.checks import reject_group_command
 

@@ -9,7 +9,7 @@ from functools import partial
 from telegram import BotCommand
 from telegram.ext import Application, CommandHandler, MessageHandler, filters
 
-from config import BOT_TOKEN
+from settings import BOT_TOKEN
 
 
 # Bot commands menu - shown when user clicks Menu button
