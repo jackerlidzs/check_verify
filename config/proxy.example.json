@@ -1,5 +1,5 @@
 {
-    "_comment": "Proxy Configuration - Supports multiple providers",
+    "_comment": "Proxy Configuration - Copy to proxy.json and fill in your credentials",
     "active_provider": "dataimpulse",
     "providers": {
         "brightdata_dc": {
@@ -8,8 +8,8 @@
             "protocol": "http",
             "host": "brd.superproxy.io",
             "port": 33335,
-            "username": "brd-customer-hl_83bd6192-zone-datacenter_proxy2-country-us",
-            "password": "a30v5cb40qwj",
+            "username": "YOUR_BRIGHTDATA_USERNAME",
+            "password": "YOUR_BRIGHTDATA_PASSWORD",
             "country": "us"
         },
         "brightdata": {
@@ -18,8 +18,8 @@
             "protocol": "http",
             "host": "brd.superproxy.io",
             "port": 33335,
-            "username": "brd-customer-hl_83bd6192-zone-residential_proxy2-country-us",
-            "password": "4c1v01c4ubzm",
+            "username": "YOUR_BRIGHTDATA_USERNAME",
+            "password": "YOUR_BRIGHTDATA_PASSWORD",
             "country": "us"
         },
         "dataimpulse": {
@@ -29,8 +29,8 @@
             "host": "gw.dataimpulse.com",
             "sticky_port": 10000,
             "rotating_port": 823,
-            "username": "bc62638d394b903e219e",
-            "password": "db385400a5a64b74",
+            "username": "YOUR_DATAIMPULSE_USERNAME",
+            "password": "YOUR_DATAIMPULSE_PASSWORD",
             "country": "us",
             "state": "california,florida,newyork,texas"
         },

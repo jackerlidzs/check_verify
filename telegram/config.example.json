@@ -1,6 +1,6 @@
 {
-    "api_id": "37410686",
-    "api_hash": "7fa9edad48b082bbbddd84c7a4ac581e",
+    "api_id": "YOUR_TELEGRAM_API_ID",
+    "api_hash": "YOUR_TELEGRAM_API_HASH",
     "session_file": "telegram_session",
     "bots": {
         "tempmail": {

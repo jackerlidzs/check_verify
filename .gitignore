@@ -53,6 +53,46 @@ logs/
 # Configuration (with sensitive data)
 config_local.py
 
+# ===== SECURITY: Sensitive files =====
+# Session files (contain auth tokens)
+*.session
+*.session-journal
+telegram_session*
+
+# Config files with credentials
+chatgpt/config.json
+telegram/config.json
+config/proxy.json
+config/military.json
+k12_verify/app/core/data/signup_config.json
+
+# Account data (emails, passwords)
+**/accounts.json
+**/chatgpt_accounts.json
+
+# IP and usage tracking
+**/ip_usage_log.json
+**/used_ips.json
+**/ipv6_pool.json
+
+# Teacher/veteran personal data
+**/real_teachers.json
+**/k12_teacher_info.json
+**/k12_teacher_info_enriched.json
+**/used_teachers.json
+**/scraped_teachers*.json
+**/veterans*.json
+**/eligible_veterans.json
+**/anc_veterans.json
+**/ngl_veterans.json
+
+# Document review (may contain personal info)
+**/document_review/
+
+# Scraper progress and results
+**/scrape_progress.json
+**/found_staff_urls.json
+
 # Docker
 .dockerignore
 
