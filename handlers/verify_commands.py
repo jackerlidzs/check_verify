@@ -90,10 +90,9 @@ async def verify_command(update: Update, context: ContextTypes.DEFAULT_TYPE, db:
                         progress_bar = "▓" * step + "░" * (total - step)
                         await processing_msg.edit_text(
                             f"💎 Gemini One Pro verification\n"
-                            f"ID: `{verification_id[:20]}...`\n\n"
+                            f"ID: {verification_id[:20]}...\n\n"
                             f"⏳ Step {step}/{total}: {msg}\n"
-                            f"[{progress_bar}]",
-                            parse_mode="Markdown"
+                            f"[{progress_bar}]"
                         )
                         last_step = step
                     except Exception:
@@ -123,15 +122,19 @@ async def verify_command(update: Update, context: ContextTypes.DEFAULT_TYPE, db:
             str(result),
         )
 
-        # Get student info for display
+        # Get student info for display (escape underscores for Markdown)
         student_info = result.get("student_info", {})
         profile_msg = ""
         if student_info:
-            profile_msg = "\n\n📋 **Student Profile Used:**\n"
-            profile_msg += f"• Name: `{student_info.get('name', 'N/A')}`\n"
-            profile_msg += f"• Email: `{student_info.get('email', 'N/A')}`\n"
-            profile_msg += f"• Birth Date: `{student_info.get('birth_date', 'N/A')}`\n"
-            profile_msg += f"• School: `{student_info.get('school', 'N/A')}`"
+            name = student_info.get('name', 'N/A')
+            email = student_info.get('email', 'N/A').replace('_', '\\_')
+            birth_date = student_info.get('birth_date', 'N/A')
+            school = student_info.get('school', 'N/A')
+            profile_msg = "\n\n📋 Student Profile Used:\n"
+            profile_msg += f"• Name: {name}\n"
+            profile_msg += f"• Email: {email}\n"
+            profile_msg += f"• Birth Date: {birth_date}\n"
+            profile_msg += f"• School: {school}"
 
         if result["success"]:
             result_msg = "✅ Verification successful!\n\n"
@@ -140,13 +143,13 @@ async def verify_command(update: Update, context: ContextTypes.DEFAULT_TYPE, db:
             if result.get("redirect_url"):
                 result_msg += f"\n👉 Redirect link:\n{result['redirect_url']}"
             result_msg += profile_msg
-            await processing_msg.edit_text(result_msg, parse_mode="Markdown")
+            await processing_msg.edit_text(result_msg)
         else:
             db.add_balance(user_id, VERIFY_COST)
             error_msg = f"❌ Verification failed: {result.get('message', 'Unknown error')}\n\n"
             error_msg += f"💰 Refunded {VERIFY_COST} points"
             error_msg += profile_msg
-            await processing_msg.edit_text(error_msg, parse_mode="Markdown")
+            await processing_msg.edit_text(error_msg)
     except Exception as e:
         logger.error("Verification error: %s", e)
         db.add_balance(user_id, VERIFY_COST)
