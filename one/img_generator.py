@@ -348,8 +348,8 @@ def generate_html(first_name, last_name, school_id='2565'):
 <div class="viewport">
     <div class="header">
         <div class="brand">
-            <div class="psu-logo">PennState</div>
-            <div class="system-name">LionPATH</div>
+            <div class="psu-logo">The Pennsylvania State University</div>
+            <div class="system-name">LionPATH Student Information System</div>
         </div>
         <div class="user-menu">
             <span>Welcome, <strong>{name}</strong></span>
@@ -369,8 +369,8 @@ def generate_html(first_name, last_name, school_id='2565'):
     <div class="content">
         <div class="page-header">
             <h1 class="page-title">My Class Schedule</h1>
-            <div class="term-selector">
-                Term: <strong>Spring 2026</strong> (Jan 12 - May 1)
+            <div class="term-selector" style="background: #e8f4e8; padding: 8px 15px; border-radius: 5px; border: 1px solid #4caf50;">
+                <strong style="color: #2e7d32;">CURRENT TERM:</strong> <strong>Spring 2026</strong> (January 12, 2026 - May 1, 2026)
             </div>
         </div>
 
@@ -450,6 +450,8 @@ def generate_image(first_name, last_name, school_id='2565'):
     """
     try:
         from playwright.sync_api import sync_playwright
+        from PIL import Image, ImageFilter
+        import numpy as np
 
         # 生成 HTML
         html_content = generate_html(first_name, last_name, school_id)
@@ -463,7 +465,26 @@ def generate_image(first_name, last_name, school_id='2565'):
             screenshot_bytes = page.screenshot(type='png', full_page=True)
             browser.close()
 
-        return screenshot_bytes
+        # Apply authenticity filters to bypass AI detection
+        # (Makes it look more like a photo of a screen rather than a direct screenshot)
+        img = Image.open(BytesIO(screenshot_bytes))
+        img_array = np.array(img)
+        
+        # Add subtle noise (like camera sensor noise)
+        noise_intensity = 3  # Very subtle
+        noise = np.random.randint(-noise_intensity, noise_intensity + 1, img_array.shape, dtype=np.int16)
+        noisy_img = np.clip(img_array.astype(np.int16) + noise, 0, 255).astype(np.uint8)
+        
+        # Convert back to PIL Image
+        img = Image.fromarray(noisy_img)
+        
+        # Apply very slight blur (simulates camera focus)
+        img = img.filter(ImageFilter.GaussianBlur(radius=0.3))
+        
+        # Save back to bytes
+        output = BytesIO()
+        img.save(output, format='PNG', quality=95)
+        return output.getvalue()
 
     except ImportError:
         raise Exception("Playwright required: pip install playwright && playwright install chromium")
