@@ -464,6 +464,17 @@ def generate_enrollment_letter_html(first_name, last_name, school_id='2565'):
     today = datetime.now()
     date_str = today.strftime("%B %d, %Y")
     
+    # Load Penn State logo as base64
+    import os
+    logo_path = os.path.join(os.path.dirname(__file__), 'assets', 'psu_logo.png')
+    try:
+        with open(logo_path, 'rb') as f:
+            logo_base64 = base64.b64encode(f.read()).decode('utf-8')
+        logo_img = f'<img src="data:image/png;base64,{logo_base64}" alt="Penn State" style="height: 50px;">'
+    except FileNotFoundError:
+        # Fallback to text if logo not found
+        logo_img = '<div class="logo">Penn<span>State</span></div>'
+    
     html = f"""
 <!DOCTYPE html>
 <html lang="en">
@@ -604,9 +615,7 @@ def generate_enrollment_letter_html(first_name, last_name, school_id='2565'):
 
 <div class="letter-container">
     <div class="header">
-        <div class="logo">
-            Penn<span>State</span>
-        </div>
+        {logo_img}
         <div class="dept-info">
             <strong>Office of the Registrar</strong><br>
             112 Shields Building<br>
