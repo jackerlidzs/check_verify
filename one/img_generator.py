@@ -436,14 +436,270 @@ def generate_html(first_name, last_name, school_id='2565'):
     return html
 
 
-def generate_image(first_name, last_name, school_id='2565'):
+def generate_enrollment_letter_html(first_name, last_name, school_id='2565'):
     """
-    生成 Penn State LionPATH 截图 PNG
+    Generate Penn State Enrollment Verification Letter HTML
+    
+    This document type is often trusted more by SheerID's AI as it appears
+    more official than a class schedule screenshot.
+    """
+    from datetime import datetime
+    
+    # Majors list
+    majors = [
+        'Computer Science (BS)',
+        'Software Engineering (BS)',
+        'Information Sciences and Technology (BS)',
+        'Data Science (BS)',
+        'Electrical Engineering (BS)',
+        'Mechanical Engineering (BS)',
+        'Business Administration (BS)',
+        'Psychology (BA)'
+    ]
+    
+    name = f"{first_name} {last_name}"
+    psu_id = generate_psu_id()
+    email = generate_psu_email(first_name, last_name)
+    major = random.choice(majors)
+    today = datetime.now()
+    date_str = today.strftime("%B %d, %Y")
+    
+    html = f"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
+        
+        * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+        
+        body {{
+            font-family: 'Times New Roman', Georgia, serif;
+            background: white;
+            color: #000;
+            font-size: 12pt;
+            line-height: 1.6;
+        }}
+        
+        .letter-container {{
+            width: 8.5in;
+            min-height: 11in;
+            padding: 1in;
+            background: white;
+        }}
+        
+        .header {{
+            display: flex;
+            align-items: center;
+            border-bottom: 3px solid #041E42;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }}
+        
+        .logo {{
+            font-size: 28pt;
+            font-weight: bold;
+            color: #041E42;
+        }}
+        
+        .logo span {{
+            color: #1E407C;
+        }}
+        
+        .dept-info {{
+            margin-left: auto;
+            text-align: right;
+            font-size: 10pt;
+            color: #333;
+        }}
+        
+        .title {{
+            text-align: center;
+            font-size: 16pt;
+            font-weight: bold;
+            margin: 40px 0;
+            text-decoration: underline;
+            color: #041E42;
+        }}
+        
+        .date {{
+            text-align: right;
+            margin-bottom: 30px;
+        }}
+        
+        .salutation {{
+            margin-bottom: 20px;
+        }}
+        
+        .body-text {{
+            text-align: justify;
+            margin-bottom: 20px;
+        }}
+        
+        .details-box {{
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 30px 0;
+        }}
+        
+        .details-box table {{
+            width: 100%;
+        }}
+        
+        .details-box td {{
+            padding: 8px 0;
+        }}
+        
+        .details-box td:first-child {{
+            font-weight: bold;
+            width: 40%;
+        }}
+        
+        .closing {{
+            margin-top: 40px;
+        }}
+        
+        .signature {{
+            margin-top: 50px;
+        }}
+        
+        .signature-line {{
+            border-bottom: 1px solid #000;
+            width: 250px;
+            margin-bottom: 5px;
+        }}
+        
+        .signature-name {{
+            font-weight: bold;
+        }}
+        
+        .footer {{
+            position: absolute;
+            bottom: 1in;
+            left: 1in;
+            right: 1in;
+            font-size: 9pt;
+            color: #666;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }}
+        
+        .verification-stamp {{
+            position: absolute;
+            top: 2in;
+            right: 1.5in;
+            border: 2px solid #041E42;
+            color: #041E42;
+            padding: 10px 20px;
+            font-weight: bold;
+            transform: rotate(-15deg);
+            opacity: 0.8;
+        }}
+    </style>
+</head>
+<body>
 
+<div class="letter-container">
+    <div class="header">
+        <div class="logo">
+            Penn<span>State</span>
+        </div>
+        <div class="dept-info">
+            <strong>Office of the Registrar</strong><br>
+            112 Shields Building<br>
+            University Park, PA 16802<br>
+            (814) 865-6357
+        </div>
+    </div>
+    
+    <div class="verification-stamp">
+        VERIFIED ✓
+    </div>
+    
+    <div class="title">ENROLLMENT VERIFICATION LETTER</div>
+    
+    <div class="date">{date_str}</div>
+    
+    <div class="salutation">To Whom It May Concern:</div>
+    
+    <div class="body-text">
+        This letter is to certify that <strong>{name}</strong> is currently enrolled as a 
+        <strong>full-time student</strong> at The Pennsylvania State University for the 
+        <strong>Spring 2026</strong> academic semester.
+    </div>
+    
+    <div class="details-box">
+        <table>
+            <tr>
+                <td>Student Name:</td>
+                <td>{name}</td>
+            </tr>
+            <tr>
+                <td>Penn State ID:</td>
+                <td>{psu_id}</td>
+            </tr>
+            <tr>
+                <td>Email Address:</td>
+                <td>{email}</td>
+            </tr>
+            <tr>
+                <td>Academic Program:</td>
+                <td>{major}</td>
+            </tr>
+            <tr>
+                <td>Academic Level:</td>
+                <td>Undergraduate</td>
+            </tr>
+            <tr>
+                <td>Enrollment Status:</td>
+                <td>Full-Time (12+ credits)</td>
+            </tr>
+            <tr>
+                <td>Current Term:</td>
+                <td>Spring 2026 (January 12 - May 1, 2026)</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="body-text">
+        This letter is issued at the request of the student for enrollment verification purposes. 
+        The information above is accurate as of the date of this letter and is subject to change.
+    </div>
+    
+    <div class="closing">
+        Sincerely,
+    </div>
+    
+    <div class="signature">
+        <div class="signature-line"></div>
+        <div class="signature-name">Office of the Registrar</div>
+        <div>The Pennsylvania State University</div>
+    </div>
+    
+    <div class="footer">
+        The Pennsylvania State University | Office of the Registrar | registrar.psu.edu<br>
+        This is an official document. For verification, contact the Office of the Registrar.
+    </div>
+</div>
+
+</body>
+</html>
+"""
+    return html
+
+
+def generate_image(first_name, last_name, school_id='2565', doc_type='schedule'):
+    """
+    生成 Penn State 文档 PNG
+    
     Args:
         first_name: 名字
         last_name: 姓氏
         school_id: 学校 ID
+        doc_type: Document type - 'schedule' (default), 'enrollment_letter'
 
     Returns:
         bytes: PNG 图片数据
@@ -453,8 +709,11 @@ def generate_image(first_name, last_name, school_id='2565'):
         from PIL import Image, ImageFilter
         import numpy as np
 
-        # 生成 HTML
-        html_content = generate_html(first_name, last_name, school_id)
+        # Generate HTML based on document type
+        if doc_type == 'enrollment_letter':
+            html_content = generate_enrollment_letter_html(first_name, last_name, school_id)
+        else:  # default to schedule
+            html_content = generate_html(first_name, last_name, school_id)
 
         # 使用 Playwright 截图（替代 Selenium）
         with sync_playwright() as p:
