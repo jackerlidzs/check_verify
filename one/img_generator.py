@@ -486,8 +486,17 @@ def generate_image(first_name, last_name, school_id='2565'):
         img.save(output, format='PNG', quality=95)
         return output.getvalue()
 
-    except ImportError:
-        raise Exception("Playwright required: pip install playwright && playwright install chromium")
+    except ImportError as e:
+        # Show which module is actually missing
+        missing_module = str(e)
+        if 'playwright' in missing_module.lower():
+            raise Exception("Playwright required: pip install playwright && playwright install chromium")
+        elif 'PIL' in missing_module or 'pillow' in missing_module.lower():
+            raise Exception("Pillow required: pip install Pillow")
+        elif 'numpy' in missing_module.lower():
+            raise Exception("NumPy required: pip install numpy")
+        else:
+            raise Exception(f"Import error: {missing_module}")
     except Exception as e:
         raise Exception(f"Failed to generate image: {str(e)}")
 
