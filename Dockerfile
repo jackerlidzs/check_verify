@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y \
     gnupg \
     ca-certificates \
     fonts-liberation \
+    fonts-unifont \
+    fonts-noto-color-emoji \
     libasound2 \
     libatk-bridge2.0-0 \
     libatk1.0-0 \
@@ -37,8 +39,8 @@ COPY requirements.txt .
 # 安装Python依赖（不使用缓存）
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 安装Playwright浏览器
-RUN playwright install chromium
+# 安装Playwright浏览器 (with dependencies)
+RUN playwright install chromium --with-deps
 
 # 复制项目文件（.dockerignore会自动排除缓存）
 COPY . .
