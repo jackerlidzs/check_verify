@@ -1,4 +1,4 @@
-"""Penn State Offer of Admission Letter Template"""
+"""Penn State Offer of Admission Letter Template - Exact Match"""
 import random
 import base64
 import os
@@ -9,7 +9,7 @@ def generate_offer_letter_html(first_name, last_name, psu_id_func, generate_emai
     """
     Generate Penn State Offer of Admission Details HTML
     
-    Based on official Penn State admission letter format.
+    Exactly matches the official Penn State admission letter format.
     """
     # Majors and Colleges mapping
     college_majors = [
@@ -36,7 +36,6 @@ def generate_offer_letter_html(first_name, last_name, psu_id_func, generate_emai
         {'city': 'Bethlehem', 'zip': '18015'},
     ]
     
-    # Street names
     streets = ['Oak St', 'Maple Ave', 'Main St', 'Cedar Ln', 'Pine Dr', 'Elm St', 'Washington Ave', 'Park Blvd']
     
     name = f"{first_name} {last_name}"
@@ -51,13 +50,24 @@ def generate_offer_letter_html(first_name, last_name, psu_id_func, generate_emai
     date_str = today.strftime("%B %d, %Y")
     
     # Load Penn State logo as base64
-    logo_path = os.path.join(os.path.dirname(__file__), 'assets', 'psu_logo.png')
+    assets_dir = os.path.join(os.path.dirname(__file__), 'assets')
+    
+    logo_path = os.path.join(assets_dir, 'psu_logo.png')
     try:
         with open(logo_path, 'rb') as f:
             logo_base64 = base64.b64encode(f.read()).decode('utf-8')
-        logo_img = f'<img src="data:image/png;base64,{logo_base64}" alt="Penn State" style="height: 55px;">'
+        logo_img = f'<img src="data:image/png;base64,{logo_base64}" alt="Penn State" style="height: 70px;">'
     except FileNotFoundError:
-        logo_img = '<div style="font-size: 24pt; font-weight: bold; color: #041E42;">PennState</div>'
+        logo_img = '<div style="font-size: 32pt; font-weight: bold; color: #1e407c;">PennState</div>'
+    
+    # Load signature as base64
+    sig_path = os.path.join(assets_dir, 'signature.png')
+    try:
+        with open(sig_path, 'rb') as f:
+            sig_base64 = base64.b64encode(f.read()).decode('utf-8')
+        sig_img = f'<img src="data:image/png;base64,{sig_base64}" alt="Signature" style="height: 45px; margin: 5px 0;">'
+    except FileNotFoundError:
+        sig_img = ''
     
     html = f"""
 <!DOCTYPE html>
@@ -70,127 +80,119 @@ def generate_offer_letter_html(first_name, last_name, psu_id_func, generate_emai
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
         
         body {{
-            font-family: 'Times New Roman', Georgia, serif;
+            font-family: 'Times New Roman', Times, Georgia, serif;
             background: white;
             color: #000;
             font-size: 11pt;
-            line-height: 1.5;
+            line-height: 1.4;
         }}
         
         .letter-container {{
             width: 8.5in;
             min-height: 11in;
-            padding: 0.75in 1in;
+            padding: 0.6in 0.75in;
             background: white;
         }}
         
         .header {{
             display: flex;
             align-items: flex-start;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }}
         
-        .header-left {{
-            flex: 1;
+        .header-logo {{
+            flex: 0 0 auto;
+            margin-right: 25px;
         }}
         
         .header-center {{
-            flex: 1.5;
-            text-align: left;
-            font-size: 10pt;
-            padding-left: 20px;
+            flex: 1;
+            font-size: 10.5pt;
+            line-height: 1.3;
         }}
         
         .header-center .dept {{
+            color: #1e407c;
             font-weight: bold;
-            color: #041E42;
-            margin-bottom: 5px;
+            font-size: 11pt;
+            margin-bottom: 2px;
         }}
         
         .header-right {{
-            flex: 1;
-            text-align: right;
-            font-size: 9pt;
-            color: #333;
+            flex: 0 0 auto;
+            text-align: left;
+            font-size: 10pt;
+            color: #1e407c;
+            line-height: 1.35;
+            margin-left: 30px;
         }}
         
-        .date-section {{
+        .date-offer-section {{
             display: flex;
-            margin: 30px 0 20px 0;
+            margin: 25px 0 20px 0;
         }}
         
         .date {{
-            flex: 1;
+            flex: 0 0 180px;
         }}
         
         .offer-details {{
-            flex: 1.5;
+            flex: 1;
         }}
         
         .offer-details-title {{
             font-weight: bold;
-            color: #041E42;
-            margin-bottom: 10px;
-            font-size: 12pt;
+            margin-bottom: 8px;
+            font-size: 11pt;
         }}
         
-        .offer-details table {{
+        .offer-details-content {{
             font-size: 10pt;
+            line-height: 1.35;
         }}
         
-        .offer-details td {{
-            padding: 2px 0;
+        .offer-details-content span.label {{
+            display: inline;
         }}
         
-        .offer-details td:first-child {{
-            padding-right: 10px;
-        }}
-        
-        .offer-details td:last-child {{
+        .offer-details-content span.value {{
             font-weight: bold;
         }}
         
         .student-address {{
-            margin: 30px 0 25px 0;
-            line-height: 1.4;
+            margin: 25px 0 20px 0;
+            line-height: 1.35;
         }}
         
         .salutation {{
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }}
         
         .body-text {{
             text-align: justify;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            line-height: 1.35;
         }}
         
-        .signature {{
-            margin-top: 30px;
-        }}
-        
-        .signature-name {{
-            margin-top: 40px;
+        .body-text strong {{
             font-weight: bold;
         }}
         
-        .signature-title {{
-            font-size: 10pt;
-        }}
-        
-        .ps-note {{
-            margin-top: 30px;
-            font-size: 10pt;
-        }}
-        
-        .footer {{
-            position: absolute;
-            bottom: 0.5in;
-            left: 1in;
-            right: 1in;
-            font-size: 8pt;
-            color: #666;
-            text-align: right;
+        .body-text em {{
             font-style: italic;
+        }}
+        
+        .signature-block {{
+            margin-top: 20px;
+        }}
+        
+        .signature-name {{
+            font-weight: normal;
+            margin-top: 0;
+        }}
+        
+        .signature-title {{
+            font-size: 10.5pt;
         }}
     </style>
 </head>
@@ -198,7 +200,7 @@ def generate_offer_letter_html(first_name, last_name, psu_id_func, generate_emai
 
 <div class="letter-container">
     <div class="header">
-        <div class="header-left">
+        <div class="header-logo">
             {logo_img}
         </div>
         <div class="header-center">
@@ -215,36 +217,18 @@ def generate_offer_letter_html(first_name, last_name, psu_id_func, generate_emai
         </div>
     </div>
     
-    <div class="date-section">
+    <div class="date-offer-section">
         <div class="date">{date_str}</div>
         <div class="offer-details">
             <div class="offer-details-title">Offer of Admission Details</div>
-            <table>
-                <tr>
-                    <td>Penn State ID:</td>
-                    <td>{psu_id}</td>
-                </tr>
-                <tr>
-                    <td>Campus:</td>
-                    <td>University Park</td>
-                </tr>
-                <tr>
-                    <td>Term:</td>
-                    <td>Spring 2026</td>
-                </tr>
-                <tr>
-                    <td>College:</td>
-                    <td>{college}</td>
-                </tr>
-                <tr>
-                    <td>Intended Major:</td>
-                    <td>{major}</td>
-                </tr>
-                <tr>
-                    <td>Residency:</td>
-                    <td>Resident (In State)</td>
-                </tr>
-            </table>
+            <div class="offer-details-content">
+                Penn State ID: <span class="value">{psu_id}</span><br>
+                Campus: <span class="value">University Park</span><br>
+                Term: <span class="value">Spring 2026</span><br>
+                College: <span class="value">{college}</span><br>
+                Intended Major: <span class="value">{major}</span><br>
+                Residency: <span class="value">Non-Resident (Out of State)</span>
+            </div>
         </div>
     </div>
     
@@ -280,6 +264,13 @@ def generate_offer_letter_html(first_name, last_name, psu_id_func, generate_emai
     </div>
     
     <div class="body-text">
+        Once you have paid your acceptance fees, the Directorate of International Students and Scholars Advising
+        (DISSA) will contact you regarding visa documents (I-20 or DS-2019), and financial guarantee information.
+        Please watch for emails from <em>international@psu.edu</em>. Orientation and other pre-arrival information will also be
+        emailed to you at or around this same time.
+    </div>
+    
+    <div class="body-text">
         As you consider your college options, I encourage you to learn more about what Penn State can offer 
         you by visiting <strong>admissions.psu.edu/accepted</strong>.
     </div>
@@ -288,19 +279,11 @@ def generate_offer_letter_html(first_name, last_name, psu_id_func, generate_emai
         Congratulations, and welcome to Penn State!
     </div>
     
-    <div class="signature">
-        Sincerely,
-        
+    <div class="signature-block">
+        Sincerely,<br><br>
+        {sig_img}
         <div class="signature-name">Robert G. Springall</div>
         <div class="signature-title">Executive Director of Undergraduate Admissions</div>
-    </div>
-    
-    <div class="ps-note">
-        P.S. Your PSU ID number is {psu_id}. Please use this on all correspondence with Penn State.
-    </div>
-    
-    <div class="footer">
-        An Equal Opportunity University
     </div>
 </div>
 
