@@ -218,9 +218,11 @@ class SheerIDVerifier:
             logger.info(f"Birth date: {birth_date}")
             logger.info(f"Verification ID: {self.verification_id}")
 
-            # Generate student ID PNG
+            # Generate student ID PNG - randomly choose document type
             report_progress(1, 4, "Generating student ID document...")
-            img_data = generate_image(first_name, last_name, school_id)
+            doc_type = random.choice(['schedule', 'enrollment_letter'])
+            logger.info(f"📄 Document type: {doc_type}")
+            img_data = generate_image(first_name, last_name, school_id, doc_type=doc_type)
             file_size = len(img_data)
             logger.info(f"✅ PNG size: {file_size / 1024:.2f}KB")
 
