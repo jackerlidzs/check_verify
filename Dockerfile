@@ -39,8 +39,8 @@ COPY requirements.txt .
 # 安装Python依赖（不使用缓存）
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 安装Playwright浏览器 (with dependencies)
-RUN playwright install chromium --with-deps
+# 安装Playwright浏览器 (deps already installed above)
+RUN playwright install chromium
 
 # 复制项目文件（.dockerignore会自动排除缓存）
 COPY . .
