@@ -369,8 +369,8 @@ def generate_html(first_name, last_name, school_id='2565'):
     <div class="content">
         <div class="page-header">
             <h1 class="page-title">My Class Schedule</h1>
-            <div class="term-selector" style="background: #e8f4e8; padding: 8px 15px; border-radius: 5px; border: 1px solid #4caf50;">
-                <strong style="color: #2e7d32;">CURRENT TERM:</strong> <strong>Spring 2026</strong> (January 12, 2026 - May 1, 2026)
+            <div class="term-selector" style="background: #fff; padding: 6px 12px; border-radius: 0; border: 2px solid #999;">
+                Term: <strong>Spring 2026</strong> (Jan 12 - May 1)
             </div>
         </div>
 
@@ -415,6 +415,260 @@ def generate_html(first_name, last_name, school_id='2565'):
                     <th width="18%">Days & Times</th>
                     <th width="12%">Room</th>
                     <th width="10%">Units</th>
+                </tr>
+            </thead>
+            <tbody>
+                {course_rows}
+            </tbody>
+        </table>
+
+        <div style="margin-top: 50px; border-top: 1px solid #ddd; padding-top: 10px; font-size: 11px; color: #888; text-align: center;">
+            &copy; 2026 The Pennsylvania State University. All rights reserved.<br>
+            LionPATH is the student information system for Penn State.
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+"""
+
+    return html
+
+
+def generate_html_with_fixed_data(first_name, last_name, psu_id, major, school_id='2565'):
+    """
+    Generate Penn State LionPATH HTML with FIXED data for document consistency.
+    
+    Args:
+        first_name: First name
+        last_name: Last name
+        psu_id: FIXED PSU ID (shared with Offer Letter)
+        major: FIXED major (shared with Offer Letter)
+        school_id: School ID
+    
+    Returns:
+        str: HTML content
+    """
+    name = f"{first_name} {last_name}"
+    date = datetime.now().strftime('%m/%d/%Y, %I:%M:%S %p')
+
+    # Generate random course schedule
+    schedule = generate_random_schedule()
+    course_rows = ""
+    for course in schedule:
+        course_rows += f"""
+                <tr>
+                    <td>{course['class_nbr']}</td>
+                    <td class="course-code">{course['code']}</td>
+                    <td class="course-title">{course['title']}</td>
+                    <td>{course['instructor']}</td>
+                    <td>{course['time']}</td>
+                    <td>{course['room']}</td>
+                    <td>{course['credits']}</td>
+                </tr>"""
+
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+        
+        :root {{
+            --psu-blue: #1e407c;
+            --psu-light: #a0b8e0;
+            --nav-dark: #041E42;
+        }}
+
+        * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+
+        body {{
+            font-family: 'Roboto', Arial, sans-serif;
+            background: #e9e9e9;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }}
+
+        .viewport {{
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            min-height: 600px;
+        }}
+
+        .header {{
+            background: var(--psu-blue);
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }}
+        .brand {{ font-size: 16px; display: flex; gap: 15px; align-items: center; }}
+        .brand .university-name {{ font-weight: 700; font-size: 15px; }}
+        .brand .system-name {{ color: var(--psu-light); font-size: 13px; }}
+        .header-right {{ display: flex; align-items: center; gap: 15px; font-size: 13px; }}
+        .header-right .user-name {{ font-weight: 600; }}
+
+        .nav-bar {{
+            background: #f5f5f5;
+            padding: 0 20px;
+            display: flex;
+            gap: 5px;
+            border-bottom: 1px solid #ddd;
+        }}
+        .nav-item {{
+            padding: 10px 12px;
+            font-size: 13px;
+            color: #555;
+            cursor: pointer;
+        }}
+        .nav-item.active {{
+            border-bottom: 3px solid var(--psu-blue);
+            color: var(--psu-blue);
+            font-weight: 500;
+        }}
+
+        .content {{
+            padding: 25px;
+        }}
+
+        .page-header {{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }}
+        .page-title {{
+            font-size: 24px;
+            color: var(--psu-blue);
+            margin: 0;
+        }}
+
+        .term-selector {{
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #333;
+            font-weight: bold;
+        }}
+
+        .student-card {{
+            background: #fcfcfc;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            margin-bottom: 25px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            font-size: 13px;
+        }}
+        .info-label {{ color: #777; font-size: 11px; text-transform: uppercase; margin-bottom: 4px; }}
+        .info-val {{ font-weight: bold; color: #333; font-size: 14px; }}
+        .status-badge {{
+            background-color: #e6fffa; color: #007a5e;
+            padding: 4px 8px; border-radius: 4px; font-weight: bold; border: 1px solid #b2f5ea;
+        }}
+
+        .schedule-table {{
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }}
+
+        .schedule-table th {{
+            text-align: left;
+            padding: 12px;
+            background-color: #f0f0f0;
+            border-bottom: 2px solid #ccc;
+            color: #555;
+        }}
+
+        .schedule-table td {{
+            padding: 15px 12px;
+            border-bottom: 1px solid #eee;
+        }}
+
+        .course-code {{ font-weight: bold; color: var(--psu-blue); }}
+        .course-title {{ font-weight: 500; }}
+    </style>
+</head>
+<body>
+
+<div class="viewport">
+    <div class="header">
+        <div class="brand">
+            <div class="university-name">The Pennsylvania State University</div>
+            <div class="system-name">LionPATH Student Information System</div>
+        </div>
+        <div class="header-right">
+            <span>Welcome, <span class="user-name">{name}</span></span>
+            <span style="color: var(--psu-light);">|</span>
+            <span style="cursor: pointer;">Sign Out</span>
+        </div>
+    </div>
+
+    <div class="nav-bar">
+        <div class="nav-item">Student Home</div>
+        <div class="nav-item active">My Class Schedule</div>
+        <div class="nav-item">Academics</div>
+        <div class="nav-item">Finances</div>
+        <div class="nav-item">Campus Life</div>
+    </div>
+
+    <div class="content">
+        <div class="page-header">
+            <h1 class="page-title">My Class Schedule</h1>
+            <div class="term-selector" style="background: #fff; padding: 6px 12px; border-radius: 0; border: 2px solid #999;">
+                Term: <strong>Spring 2026</strong> (Jan 12 - May 1)
+            </div>
+        </div>
+
+        <div class="student-card" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+            <div>
+                <div class="info-label">Student Name</div>
+                <div class="info-val">{name}</div>
+            </div>
+            <div>
+                <div class="info-label">PSU ID</div>
+                <div class="info-val">{psu_id}</div>
+            </div>
+            <div>
+                <div class="info-label">Academic Year</div>
+                <div class="info-val">2025-2026</div>
+            </div>
+            <div>
+                <div class="info-label">Academic Program</div>
+                <div class="info-val">{major}</div>
+            </div>
+            <div>
+                <div class="info-label">Enrollment Date</div>
+                <div class="info-val">January 12, 2026</div>
+            </div>
+            <div>
+                <div class="info-label">Enrollment Status</div>
+                <div class="status-badge">✅ Enrolled</div>
+            </div>
+        </div>
+
+        <div style="text-align: right; font-size: 12px; color: #888; margin-bottom: 10px;">
+            Data retrieved: {date}
+        </div>
+
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>Class Nbr</th>
+                    <th>Course</th>
+                    <th>Title</th>
+                    <th>Instructor</th>
+                    <th>Days & Times</th>
+                    <th>Room</th>
+                    <th>Units</th>
                 </tr>
             </thead>
             <tbody>
@@ -511,8 +765,110 @@ def generate_image(first_name, last_name, school_id='2565', doc_type='schedule')
             raise Exception("NumPy required: pip install numpy")
         else:
             raise Exception(f"Import error: {missing_module}")
-    except Exception as e:
         raise Exception(f"Failed to generate image: {str(e)}")
+
+
+def generate_both_documents(first_name, last_name, school_id='2565'):
+    """
+    Generate both LionPATH schedule and Offer Letter with SAME student data.
+    
+    Ensures consistency when uploading multiple documents to SheerID:
+    - Same PSU ID
+    - Same Major/Academic Program
+    - Same Name
+    - Same Term
+    
+    Returns:
+        dict: {'schedule': bytes, 'offer_letter': bytes, 'student_info': dict}
+    """
+    try:
+        from playwright.sync_api import sync_playwright
+        from PIL import Image, ImageFilter
+        import numpy as np
+        
+        # Generate SHARED student data
+        psu_id = generate_psu_id()
+        email = generate_psu_email(first_name, last_name)
+        
+        # Shared major/college mapping - courses match academic program
+        college_majors = [
+            {'college': 'College of Engineering', 'major': 'Computer Engineering', 
+             'schedule_major': 'Computer Science (BS)', 'courses': ['CMPSC', 'MATH', 'PHYS', 'ENGR']},
+            {'college': 'College of Engineering', 'major': 'Electrical Engineering', 
+             'schedule_major': 'Electrical Engineering (BS)', 'courses': ['EE', 'MATH', 'PHYS', 'CMPSC']},
+            {'college': 'College of Engineering', 'major': 'Mechanical Engineering', 
+             'schedule_major': 'Mechanical Engineering (BS)', 'courses': ['ME', 'MATH', 'PHYS', 'ENGR']},
+            {'college': 'College of Information Sciences and Technology', 'major': 'Data Sciences', 
+             'schedule_major': 'Data Science (BS)', 'courses': ['CMPSC', 'STAT', 'MATH', 'IST']},
+            {'college': 'Smeal College of Business', 'major': 'Finance', 
+             'schedule_major': 'Business Administration (BS)', 'courses': ['FIN', 'ACCTG', 'MGMT', 'ECON']},
+            {'college': 'College of Liberal Arts', 'major': 'Psychology', 
+             'schedule_major': 'Psychology (BA)', 'courses': ['PSYCH', 'STAT', 'SOC', 'ENGL']},
+        ]
+        
+        selected = random.choice(college_majors)
+        
+        student_info = {
+            'first_name': first_name,
+            'last_name': last_name,
+            'full_name': f"{first_name} {last_name}",
+            'psu_id': psu_id,
+            'email': email,
+            'college': selected['college'],
+            'major': selected['major'],
+            'schedule_major': selected['schedule_major'],
+            'term': 'Spring 2026'
+        }
+        
+        # Generate LionPATH schedule with FIXED data
+        schedule_html = generate_html_with_fixed_data(
+            first_name, last_name, psu_id, selected['schedule_major'], school_id
+        )
+        
+        # Generate Offer Letter
+        from one.offer_letter import generate_offer_letter_html_with_data
+        offer_html = generate_offer_letter_html_with_data(
+            first_name, last_name, psu_id, selected['college'], selected['major']
+        )
+        
+        results = {}
+        
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            
+            for doc_type, html_content in [('schedule', schedule_html), ('offer_letter', offer_html)]:
+                page = browser.new_page(viewport={'width': 816, 'height': 1056})
+                page.set_content(html_content, wait_until='load')
+                page.wait_for_timeout(500)
+                screenshot_bytes = page.screenshot(type='png', full_page=True)
+                page.close()
+                
+                # Apply authenticity filters
+                img = Image.open(BytesIO(screenshot_bytes))
+                img_array = np.array(img)
+                noise_intensity = 3
+                noise = np.random.randint(-noise_intensity, noise_intensity + 1, img_array.shape, dtype=np.int16)
+                noisy_img = np.clip(img_array.astype(np.int16) + noise, 0, 255).astype(np.uint8)
+                img = Image.fromarray(noisy_img)
+                img = img.filter(ImageFilter.GaussianBlur(radius=0.3))
+                
+                output = BytesIO()
+                img.save(output, format='PNG', quality=95)
+                results[doc_type] = output.getvalue()
+            
+            browser.close()
+        
+        return {
+            'schedule': results['schedule'],
+            'offer_letter': results['offer_letter'],
+            'student_info': student_info
+        }
+        
+    except Exception as e:
+        raise Exception(f"Failed to generate documents: {str(e)}")
+
+
+
 
 
 if __name__ == '__main__':
