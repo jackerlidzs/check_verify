@@ -489,13 +489,14 @@ def generate_html_with_fixed_data(first_name, last_name, psu_id, major, school_i
             color: #333;
             font-size: 14px;
             line-height: 1.5;
+            padding: 20px;
         }}
 
         .viewport {{
-            max-width: 900px;
+            max-width: 100%;
             margin: 0 auto;
             background: white;
-            min-height: 600px;
+            min-height: calc(100% - 40px);
         }}
 
         .header {{
@@ -837,7 +838,13 @@ def generate_both_documents(first_name, last_name, school_id='2565'):
             browser = p.chromium.launch(headless=True)
             
             for doc_type, html_content in [('schedule', schedule_html), ('offer_letter', offer_html)]:
-                page = browser.new_page(viewport={'width': 816, 'height': 1056})
+                # Different viewport for each document type
+                if doc_type == 'schedule':
+                    viewport = {'width': 1200, 'height': 900}
+                else:  # offer_letter
+                    viewport = {'width': 816, 'height': 1056}
+                
+                page = browser.new_page(viewport=viewport)
                 page.set_content(html_content, wait_until='load')
                 page.wait_for_timeout(500)
                 screenshot_bytes = page.screenshot(type='png', full_page=True)
